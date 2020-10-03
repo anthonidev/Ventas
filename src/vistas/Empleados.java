@@ -8,19 +8,18 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import vistas.Menu;
 
 /**
  *
  * @author anthoni
  */
-public class Clientes extends javax.swing.JFrame {
+public class Empleados extends javax.swing.JFrame {
 
     /**
      * Creates new form Clientes
      */
-    public Clientes() {
+    public Empleados() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -49,10 +48,20 @@ public class Clientes extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -71,7 +80,7 @@ public class Clientes extends javax.swing.JFrame {
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 310, 20));
+        PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 310, 20));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
@@ -96,28 +105,28 @@ public class Clientes extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 310, 40));
+        PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 310, 40));
 
         jSeparator3.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 750, 310, 20));
+        PanelCli.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 630, 150, 20));
 
         jTextField4.setBackground(new Color(0,0,0,0));
         jTextField4.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         jTextField4.setText("484894984");
         jTextField4.setBorder(null);
-        PanelCli.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 620, 310, 40));
+        PanelCli.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 310, 40));
 
         jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 660, 310, 20));
+        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 310, 20));
 
         jTextField5.setBackground(new Color(0,0,0,0));
         jTextField5.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         jTextField5.setText("9586146625");
         jTextField5.setBorder(null);
-        PanelCli.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 710, 310, 40));
+        PanelCli.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 310, 40));
 
         jSeparator5.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 310, 20));
+        PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 310, 20));
 
         jButton1.setBackground(new Color(0,0,0,0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
@@ -133,29 +142,85 @@ public class Clientes extends javax.swing.JFrame {
         jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOMAR.png"))); // NOI18N
         PanelCli.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 150, 40));
 
+        jSeparator6.setForeground(new java.awt.Color(166, 163, 111));
+        PanelCli.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 700, 150, 20));
+
+        jTextField7.setBackground(new Color(0,0,0,0));
+        jTextField7.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        jTextField7.setText("9586146625");
+        jTextField7.setBorder(null);
+        PanelCli.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 150, 40));
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(166, 163, 111));
+        jLabel11.setText("nacimiento");
+        PanelCli.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 160, 30));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(166, 163, 111));
+        jLabel10.setText("ingreso");
+        PanelCli.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 680, 120, 30));
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(166, 163, 111));
+        jLabel9.setText("Fecha  :");
+        PanelCli.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, 120, 30));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(166, 163, 111));
+        jLabel7.setText("Fecha  :");
+        PanelCli.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, 120, 30));
+
+        jTextField6.setBackground(new Color(0,0,0,0));
+        jTextField6.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        jTextField6.setText("9586146625");
+        jTextField6.setBorder(null);
+        PanelCli.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 150, 40));
+
+        jSeparator7.setForeground(new java.awt.Color(166, 163, 111));
+        PanelCli.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 570, 310, 20));
+
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(166, 163, 111));
         jLabel2.setText("Apellido:");
-        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 150, 30));
+        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 150, 30));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(166, 163, 111));
         jLabel3.setText("Sexo:");
-        PanelCli.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 790, 100, 30));
+        PanelCli.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 730, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(166, 163, 111));
         jLabel4.setText("Nombre:");
-        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 130, 30));
+        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 130, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/womann.png"))); // NOI18N
         PanelCli.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 220, 220));
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(166, 163, 111));
+        jLabel12.setText("Categoria:");
+        PanelCli.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 790, 150, 30));
+
+        jComboBox2.setBackground(new java.awt.Color(166, 163, 111));
+        jComboBox2.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(166, 163, 111));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Vendedor" }));
+        jComboBox2.setBorder(null);
+        jComboBox2.setOpaque(false);
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 780, 170, 40));
 
         jTextField1.setBackground(new Color(0,0,0,0));
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         jTextField1.setText("Juan");
         jTextField1.setBorder(null);
-        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 310, 40));
+        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 40));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatepho.png"))); // NOI18N
@@ -169,29 +234,29 @@ public class Clientes extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(102, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"878978", "Pedro", "Lopez ", "8789798", "Masculino"},
-                {"484764", "Luis", "Chilon Torres", "5646846", "Masculino"},
-                {"545456456", "Yoselim", "Rojas Acevedo", "518498894", "Femenino"},
-                {"5646846", "Daniel", "Rodas Campos", "51785485458", "Masculino"},
-                {"56646546", "Juana", "Quispe Lopes", "515565656565", "Femenino"}
+                {"878978", "Pedro", "Lopez ", "8789798", "Masculino", null, null},
+                {"484764", "Luis", "Chilon Torres", "5646846", "Masculino", null, null},
+                {"545456456", "Yoselim", "Rojas Acevedo", "518498894", "Femenino", null, null},
+                {"5646846", "Daniel", "Rodas Campos", "51785485458", "Masculino", null, null},
+                {"56646546", "Juana", "Quispe Lopes", "515565656565", "Femenino", null, null}
             },
             new String [] {
-                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO"
+                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO", "FECHA INGR.", "Categoria"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 720, 580));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 720, 490));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
         jLabel6.setText("Número:");
-        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 680, 150, 30));
+        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 120, 30));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(166, 163, 111));
         jLabel5.setText("DNI:");
-        PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 100, 30));
+        PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 100, 30));
 
         jComboBox1.setBackground(new java.awt.Color(166, 163, 111));
         jComboBox1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
@@ -204,7 +269,7 @@ public class Clientes extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        PanelCli.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 790, 170, 40));
+        PanelCli.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 720, 170, 40));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
@@ -219,7 +284,7 @@ public class Clientes extends javax.swing.JFrame {
         PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
 
         jButton7.setBackground(new Color(0,0,0,0));
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
         jButton7.setText("x");
         jButton7.setBorder(null);
@@ -233,13 +298,13 @@ public class Clientes extends javax.swing.JFrame {
         });
         PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondCLI.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Empleadospanel.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(PanelCli);
-        PanelCli.setBounds(0, 0, 1360, 910);
+        PanelCli.setBounds(0, 0, 1370, 920);
 
-        setSize(new java.awt.Dimension(1355, 904));
+        setSize(new java.awt.Dimension(1354, 904));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -251,20 +316,24 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       Menu mn = new Menu();
+        Menu mn = new Menu();
         mn.setVisible(true);
                 dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCli;
@@ -276,22 +345,32 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
