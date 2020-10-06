@@ -32,6 +32,7 @@ public class Login extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -75,6 +76,20 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1.setBorder(null);
         loginform.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 320, 40));
 
+        jButton2.setBackground(new Color(0,0,0,0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
+        jButton2.setText("x");
+        jButton2.setBorder(null);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setOpaque(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        loginform.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, -1, -1));
+
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(166, 163, 111));
         jLabel3.setText("Contraseña:");
@@ -103,6 +118,10 @@ public class Login extends javax.swing.JFrame {
                 dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,6 +160,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

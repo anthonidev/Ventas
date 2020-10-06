@@ -87,14 +87,14 @@ public class Empleados extends javax.swing.JFrame {
         jButton4.setBorder(null);
         jButton4.setOpaque(false);
         jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
-        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, 180, 50));
+        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 180, 50));
 
         jButton5.setBackground(new Color(0,0,0,0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
         jButton5.setBorder(null);
         jButton5.setOpaque(false);
         jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
-        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 170, 180, 50));
+        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 160, 180, 50));
 
         jTextField3.setBackground(new Color(0,0,0,0));
         jTextField3.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -133,7 +133,7 @@ public class Empleados extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
-        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 180, 50));
+        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 180, 50));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOAMR.png"))); // NOI18N
