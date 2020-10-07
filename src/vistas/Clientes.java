@@ -8,6 +8,10 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.ClienteDAO;
 
 import vistas.Menu;
 
@@ -17,9 +21,10 @@ import vistas.Menu;
  */
 public class Clientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Clientes
-     */
+    ClienteDAO dao=new ClienteDAO();
+    Cliente cl=new Cliente();
+    
+   DefaultTableModel modelo= new DefaultTableModel();
     public Clientes() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -56,7 +61,7 @@ public class Clientes extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -164,24 +169,20 @@ public class Clientes extends javax.swing.JFrame {
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatePHOTO.png"))); // NOI18N
         PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 131, 150, 40));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 204));
-        jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(102, 102, 102));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setBackground(new java.awt.Color(255, 255, 204));
+        tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tabla.setForeground(new java.awt.Color(102, 102, 102));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"878978", "Pedro", "Lopez ", "8789798", "Masculino"},
-                {"484764", "Luis", "Chilon Torres", "5646846", "Masculino"},
-                {"545456456", "Yoselim", "Rojas Acevedo", "518498894", "Femenino"},
-                {"5646846", "Daniel", "Rodas Campos", "51785485458", "Masculino"},
-                {"56646546", "Juana", "Quispe Lopes", "515565656565", "Femenino"}
+
             },
             new String [] {
                 "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 720, 580));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 720, 500));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
@@ -260,10 +261,15 @@ public class Clientes extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    
+    void listar(){
+        List<Cliente> lista=dao.listar();
+        modelo=(DefaultTableModel)tabla.getModel();
+        Object[]ob=new Object[6];
+        for(int i=0;i< lista.size();i++){
+            ob[0]=lista.get(i).getIdCliente();
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -288,10 +294,10 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

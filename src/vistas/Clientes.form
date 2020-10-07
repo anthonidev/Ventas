@@ -341,13 +341,13 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="570" y="290" width="720" height="580"/>
+              <AbsoluteConstraints x="570" y="290" width="720" height="500"/>
             </Constraint>
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tabla">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="ff" type="rgb"/>
@@ -359,42 +359,12 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="5">
-                    <Column editable="true" title="DNI" type="java.lang.Object">
-                      <Data value="878978"/>
-                      <Data value="484764"/>
-                      <Data value="545456456"/>
-                      <Data value="5646846"/>
-                      <Data value="56646546"/>
-                    </Column>
-                    <Column editable="true" title="NOMBRE" type="java.lang.Object">
-                      <Data value="Pedro"/>
-                      <Data value="Luis"/>
-                      <Data value="Yoselim"/>
-                      <Data value="Daniel"/>
-                      <Data value="Juana"/>
-                    </Column>
-                    <Column editable="true" title="APELLIDO" type="java.lang.Object">
-                      <Data value="Lopez "/>
-                      <Data value="Chilon Torres"/>
-                      <Data value="Rojas Acevedo"/>
-                      <Data value="Rodas Campos"/>
-                      <Data value="Quispe Lopes"/>
-                    </Column>
-                    <Column editable="true" title="NUMERO" type="java.lang.Object">
-                      <Data value="8789798"/>
-                      <Data value="5646846"/>
-                      <Data value="518498894"/>
-                      <Data value="51785485458"/>
-                      <Data value="515565656565"/>
-                    </Column>
-                    <Column editable="true" title="SEXO" type="java.lang.Object">
-                      <Data value="Masculino"/>
-                      <Data value="Masculino"/>
-                      <Data value="Femenino"/>
-                      <Data value="Masculino"/>
-                      <Data value="Femenino"/>
-                    </Column>
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="true" title="DNI" type="java.lang.Object"/>
+                    <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
+                    <Column editable="true" title="APELLIDO" type="java.lang.Object"/>
+                    <Column editable="true" title="NUMERO" type="java.lang.Object"/>
+                    <Column editable="true" title="SEXO" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

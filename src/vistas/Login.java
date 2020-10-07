@@ -8,10 +8,14 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import modelo.EntidadUsuario;
+import modelo.UsuarioDAO;
 import vistas.Menu;
 
 public class Login extends javax.swing.JFrame {
-
+    UsuarioDAO udao=new UsuarioDAO();
+    EntidadUsuario eu=new EntidadUsuario();
    
     public Login() {
         initComponents();
@@ -28,10 +32,10 @@ public class Login extends javax.swing.JFrame {
 
         loginform = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField2 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtClave = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,11 +51,11 @@ public class Login extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
         loginform.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 320, 10));
 
-        jTextField2.setBackground(new Color (0,0,0,0));
-        jTextField2.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jTextField2.setText("jTextField1");
-        jTextField2.setBorder(null);
-        loginform.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 320, 40));
+        txtUsuario.setBackground(new Color (0,0,0,0));
+        txtUsuario.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        txtUsuario.setText("tonsof");
+        txtUsuario.setBorder(null);
+        loginform.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 320, 40));
 
         jSeparator2.setForeground(new java.awt.Color(166, 163, 111));
         loginform.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 320, 10));
@@ -70,11 +74,16 @@ public class Login extends javax.swing.JFrame {
         });
         loginform.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, -1, -1));
 
-        jPasswordField1.setBackground(new Color(0,0,0,0));
-        jPasswordField1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
-        loginform.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 320, 40));
+        txtClave.setBackground(new Color(0,0,0,0));
+        txtClave.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        txtClave.setText("123");
+        txtClave.setBorder(null);
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
+        loginform.add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 320, 40));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
@@ -113,19 +122,40 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Menu mn = new Menu();
-        mn.setVisible(true);
-                dispose();
-        
+
+    validar();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClaveActionPerformed
+
+    public void validar(){
+        String usuario=txtUsuario.getText();
+        String clave=txtClave.getText();
+        if(txtUsuario.getText().equals("") || txtClave.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe ingresar datos en la caja de texto");
+            txtUsuario.requestFocus();
+        }else{
+            eu=udao.ValidadUsuario(usuario, clave);
+            if(eu.getUsuario() != null && eu.getClave() != null){
+                Menu mn = new Menu();
+                mn.setVisible(true);
+                dispose();
+            }else{
+              JOptionPane.showMessageDialog(this, "Debe ingresar usuario valido");
+              txtUsuario.requestFocus();
+
+            }
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -165,10 +195,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel loginform;
+    private javax.swing.JPasswordField txtClave;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

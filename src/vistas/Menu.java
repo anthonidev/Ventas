@@ -103,7 +103,7 @@ public class Menu extends javax.swing.JFrame {
         jButton5.setOpaque(false);
         jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProveedoresP.png"))); // NOI18N
         jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProveedoresF.png"))); // NOI18N
-        PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 540, 280, 260));
+        PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 330, 260));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Inventary.png"))); // NOI18N
