@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package vistas;
-import vistas.Empleados;
-import vistas.Clientes;
-import vistas.Venta;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -74,6 +71,11 @@ public class Menu extends javax.swing.JFrame {
         jButton2.setOpaque(false);
         jButton2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductsP.png"))); // NOI18N
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductsF.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         PanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 190, 280, 260));
 
         jButton3.setBackground(new Color(0,0,0,0));
@@ -103,6 +105,11 @@ public class Menu extends javax.swing.JFrame {
         jButton5.setOpaque(false);
         jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProveedoresP.png"))); // NOI18N
         jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProveedoresF.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 330, 260));
 
         jButton6.setBackground(new Color(0,0,0,0));
@@ -164,6 +171,18 @@ public class Menu extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         Proveedores Pv = new Proveedores();
+        Pv.setVisible(true);
+                dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Productos Po = new Productos();
+        Po.setVisible(true);
+                dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
