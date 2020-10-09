@@ -27,6 +27,7 @@ public class Clientes extends javax.swing.JFrame {
    DefaultTableModel modelo= new DefaultTableModel();
     public Clientes() {
         initComponents();
+        listar();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setBackground(new Color(0,0,0,0));
@@ -44,30 +45,31 @@ public class Clientes extends javax.swing.JFrame {
 
         PanelCli = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        txtApellido = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jTextField5 = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtidCliente = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        comboSexo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -78,58 +80,73 @@ public class Clientes extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 310, 20));
 
-        jButton4.setBackground(new Color(0,0,0,0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setOpaque(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
-        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, 180, 50));
-
-        jButton5.setBackground(new Color(0,0,0,0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setOpaque(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
-        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 170, 180, 50));
-
-        jTextField3.setBackground(new Color(0,0,0,0));
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField3.setText("Quispe Perez");
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new Color(0,0,0,0));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
+        btnActualizar.setBorder(null);
+        btnActualizar.setOpaque(false);
+        btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
-        PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 310, 40));
+        PanelCli.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 170, 180, 50));
+
+        btnEliminar.setBackground(new Color(0,0,0,0));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
+        btnEliminar.setBorder(null);
+        btnEliminar.setOpaque(false);
+        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        PanelCli.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 170, 180, 50));
+
+        txtApellido.setBackground(new Color(0,0,0,0));
+        txtApellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtApellido.setText("Quispe Perez");
+        txtApellido.setBorder(null);
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+        PanelCli.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 510, 310, 40));
 
         jSeparator3.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 750, 310, 20));
 
-        jTextField4.setBackground(new Color(0,0,0,0));
-        jTextField4.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField4.setText("484894984");
-        jTextField4.setBorder(null);
-        PanelCli.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 620, 310, 40));
+        txtDni.setBackground(new Color(0,0,0,0));
+        txtDni.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtDni.setText("74747474");
+        txtDni.setBorder(null);
+        PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 620, 310, 40));
 
         jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 660, 310, 20));
 
-        jTextField5.setBackground(new Color(0,0,0,0));
-        jTextField5.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField5.setText("9586146625");
-        jTextField5.setBorder(null);
-        PanelCli.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 710, 310, 40));
+        txtNumero.setBackground(new Color(0,0,0,0));
+        txtNumero.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtNumero.setText("958614662");
+        txtNumero.setBorder(null);
+        PanelCli.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 710, 310, 40));
 
         jSeparator5.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 310, 20));
 
-        jButton1.setBackground(new Color(0,0,0,0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setOpaque(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
-        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 180, 50));
+        btnAgregar.setBackground(new Color(0,0,0,0));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
+        btnAgregar.setBorder(null);
+        btnAgregar.setOpaque(false);
+        btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        PanelCli.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 180, 50));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOAMR.png"))); // NOI18N
@@ -156,11 +173,17 @@ public class Clientes extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/womann.png"))); // NOI18N
         PanelCli.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 220, 220));
 
-        jTextField1.setBackground(new Color(0,0,0,0));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField1.setText("Juan");
-        jTextField1.setBorder(null);
-        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 310, 40));
+        txtidCliente.setBackground(new Color(0,0,0,0));
+        txtidCliente.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtidCliente.setText("00002");
+        txtidCliente.setBorder(null);
+        PanelCli.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 310, 40));
+
+        txtNombre.setBackground(new Color(0,0,0,0));
+        txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtNombre.setText("Juan");
+        txtNombre.setBorder(null);
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 310, 40));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatepho.png"))); // NOI18N
@@ -177,7 +200,7 @@ public class Clientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO"
+                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO", "ID"
             }
         ));
         jScrollPane1.setViewportView(tabla);
@@ -194,19 +217,6 @@ public class Clientes extends javax.swing.JFrame {
         jLabel5.setText("DNI:");
         PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 100, 30));
 
-        jComboBox1.setBackground(new java.awt.Color(166, 163, 111));
-        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(166, 163, 111));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Masculino", "Femenino" }));
-        jComboBox1.setBorder(null);
-        jComboBox1.setOpaque(false);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        PanelCli.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 790, 170, 40));
-
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
         jButton3.setBorder(null);
@@ -218,6 +228,22 @@ public class Clientes extends javax.swing.JFrame {
             }
         });
         PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
+
+        comboSexo.setBackground(new java.awt.Color(166, 163, 111));
+        comboSexo.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        comboSexo.setForeground(new java.awt.Color(166, 163, 111));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "M", "F" }));
+        comboSexo.setBorder(null);
+        comboSexo.setOpaque(false);
+        comboSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSexoActionPerformed(evt);
+            }
+        });
+        PanelCli.add(comboSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 790, 170, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondCLI.png"))); // NOI18N
+        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -234,23 +260,20 @@ public class Clientes extends javax.swing.JFrame {
         });
         PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondCLI.png"))); // NOI18N
-        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1360, 910);
 
-        setSize(new java.awt.Dimension(1355, 904));
+        setSize(new java.awt.Dimension(1353, 904));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSexoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboSexoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        Menu mn = new Menu();
@@ -261,27 +284,76 @@ public class Clientes extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
        dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
-    
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregar();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+       actualizar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        eliminar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+    void agregar(){
+        String idCliente=txtidCliente.getText();
+        String dni=txtDni.getText();
+        String nom=txtidCliente.getText();
+        String ape=txtApellido.getText();
+        String numero=txtNumero.getText();
+//        String sexo=(String) comboSexo.getSelectedItem();
+        String sexo ="M";
+      
+        
+        Object[] ob=new Object[6];
+        ob[0]=idCliente;
+        ob[1]=dni;
+        ob[2]=nom;
+        ob[3]=ape;
+        ob[4]=numero;
+        ob[5]=sexo;
+        
+         dao.add(ob);
+         System.out.println("exito");
+       
+    }
+    void actualizar(){
+        
+    }
+    void eliminar(){
+        
+    }
     void listar(){
         List<Cliente> lista=dao.listar();
         modelo=(DefaultTableModel)tabla.getModel();
         Object[]ob=new Object[6];
         for(int i=0;i< lista.size();i++){
-            ob[0]=lista.get(i).getIdCliente();
+            ob[0]=lista.get(i).getDNI();
+            
+            
+            ob[1]=lista.get(i).getNombre();
+            ob[2]=lista.get(i).getApellido();
+            ob[3]=lista.get(i).getNumero();
+            ob[4]=lista.get(i).getSexo();
+            ob[5]=lista.get(i).getIdCliente();
+            modelo.addRow(ob);
         }
+        
+        tabla.setModel(modelo);
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCli;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -294,10 +366,11 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtidCliente;
     // End of variables declaration//GEN-END:variables
 }
