@@ -12,6 +12,9 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
+import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JOptionPane;
+
 
 import vistas.Menu;
 
@@ -24,14 +27,17 @@ public class Clientes extends javax.swing.JFrame {
     ClienteDAO dao=new ClienteDAO();
     Cliente cl=new Cliente();
     
+    
    DefaultTableModel modelo= new DefaultTableModel();
     public Clientes() {
         initComponents();
         listar();
+        idAleatorio();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setBackground(new Color(0,0,0,0));
         PanelCli.setBackground(new Color(0,0,0,0));
+        
     }
 
     /**
@@ -67,9 +73,9 @@ public class Clientes extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         comboSexo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -175,9 +181,14 @@ public class Clientes extends javax.swing.JFrame {
 
         txtidCliente.setBackground(new Color(0,0,0,0));
         txtidCliente.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtidCliente.setText("00002");
+        txtidCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtidCliente.setBorder(null);
-        PanelCli.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 310, 40));
+        txtidCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidClienteActionPerformed(evt);
+            }
+        });
+        PanelCli.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 130, 40));
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -200,12 +211,17 @@ public class Clientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO", "ID"
+                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO", "Id"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 720, 500));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 720, 520));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
@@ -229,6 +245,21 @@ public class Clientes extends javax.swing.JFrame {
         });
         PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
 
+        jButton7.setBackground(new Color(0,0,0,0));
+        jButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
+        jButton7.setText("x");
+        jButton7.setBorder(null);
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setOpaque(false);
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
+
         comboSexo.setBackground(new java.awt.Color(166, 163, 111));
         comboSexo.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         comboSexo.setForeground(new java.awt.Color(166, 163, 111));
@@ -244,21 +275,6 @@ public class Clientes extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondCLI.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jButton7.setBackground(new Color(0,0,0,0));
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton7.setText("x");
-        jButton7.setBorder(null);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setOpaque(false);
-        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1360, 910);
@@ -287,23 +303,61 @@ public class Clientes extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         agregar();
+        limpiar();
+         listar();
+         idAleatorio();
+         nuevo();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
        actualizar();
+       limpiar();
+        listar();
+        idAleatorio();
+        nuevo();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         eliminar();
+        limpiar();
+         listar();
+         idAleatorio();
+         nuevo();
+         
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtidClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidClienteActionPerformed
+       
+    }//GEN-LAST:event_txtidClienteActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int fila=tabla.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }else{
+            String idCliente=tabla.getValueAt(fila, 5).toString();
+        String dni=tabla.getValueAt(fila, 0).toString();
+        String nom=tabla.getValueAt(fila, 1).toString();
+        String ape=tabla.getValueAt(fila, 2).toString();
+        String numero=tabla.getValueAt(fila, 3).toString();  
+        String sexo=tabla.getValueAt(fila, 4).toString();
+        
+        txtidCliente.setText(idCliente);
+        txtDni.setText(dni);
+        txtNombre.setText(nom);
+        txtApellido.setText(ape);
+        txtNumero.setText(numero);
+        comboSexo.setSelectedItem(sexo);
+        }
+    }//GEN-LAST:event_tablaMouseClicked
     void agregar(){
         String idCliente=txtidCliente.getText();
         String dni=txtDni.getText();
-        String nom=txtidCliente.getText();
+        String nom=txtNombre.getText();
         String ape=txtApellido.getText();
-        String numero=txtNumero.getText();
-//        String sexo=(String) comboSexo.getSelectedItem();
-        String sexo ="M";
+        String numero=txtNumero.getText();  
+        String sexo=(String) comboSexo.getSelectedItem();
+       
       
         
         Object[] ob=new Object[6];
@@ -318,11 +372,47 @@ public class Clientes extends javax.swing.JFrame {
          System.out.println("exito");
        
     }
+    
+    void idAleatorio(){
+        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
+    String cadena = Integer.toString(numero);
+    txtidCliente.setText(cadena);
+    txtidCliente.setEditable(false);
+txtidCliente.setEnabled(false);
+    }
     void actualizar(){
+        int fila=tabla.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }else{
+            String idCliente=txtidCliente.getText();
+        String dni=txtDni.getText();
+        String nom=txtNombre.getText();
+        String ape=txtApellido.getText();
+        String numero=txtNumero.getText();  
+        String sexo=(String) comboSexo.getSelectedItem();
         
+        Object[] ob=new Object[6];
+           ob[5]=idCliente;
+        ob[0]=dni;
+        ob[1]=nom;
+        ob[2]=ape;
+        ob[3]=numero;
+        ob[4]=sexo;
+        
+         dao.actualizar(ob);
+         System.out.println("exito");
+        }      
+       
     }
     void eliminar(){
-        
+         int fila=tabla.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }else{
+            String idCliente=tabla.getValueAt(fila, 5).toString();
+            dao.eliminar(idCliente);
+        }
     }
     void listar(){
         List<Cliente> lista=dao.listar();
@@ -341,6 +431,21 @@ public class Clientes extends javax.swing.JFrame {
         }
         
         tabla.setModel(modelo);
+    }
+    void nuevo(){
+          
+        txtDni.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtNumero.setText("");
+        comboSexo.setSelectedItem("Seleccionar");
+        txtNombre.requestFocus();
+    }
+    void limpiar(){
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i=i-1;
+        }
     }
     
 

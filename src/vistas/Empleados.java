@@ -48,6 +48,7 @@ public class Empleados extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jTextField7 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -68,9 +69,9 @@ public class Empleados extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -129,11 +130,16 @@ public class Empleados extends javax.swing.JFrame {
         PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 310, 20));
 
         jButton1.setBackground(new Color(0,0,0,0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registarUser.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
-        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 180, 50));
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarUserpress.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 790, 290, 60));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOAMR.png"))); // NOI18N
@@ -141,6 +147,21 @@ public class Empleados extends javax.swing.JFrame {
         jButton6.setOpaque(false);
         jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOMAR.png"))); // NOI18N
         PanelCli.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 150, 40));
+
+        jButton7.setBackground(new Color(0,0,0,0));
+        jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
+        jButton7.setText("x");
+        jButton7.setBorder(null);
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setOpaque(false);
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
 
         jSeparator6.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 700, 150, 20));
@@ -258,6 +279,13 @@ public class Empleados extends javax.swing.JFrame {
         jLabel5.setText("DNI:");
         PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 100, 30));
 
+        jButton8.setBackground(new Color(0,0,0,0));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
+        jButton8.setBorder(null);
+        jButton8.setOpaque(false);
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
+        PanelCli.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 180, 50));
+
         jComboBox1.setBackground(new java.awt.Color(166, 163, 111));
         jComboBox1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(166, 163, 111));
@@ -282,21 +310,6 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
         PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
-
-        jButton7.setBackground(new Color(0,0,0,0));
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton7.setText("x");
-        jButton7.setBorder(null);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setOpaque(false);
-        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Empleadospanel.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -330,6 +343,12 @@ public class Empleados extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RegistrarUsuario ru = new RegistrarUsuario();
+        ru.setVisible(true);
+                dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +363,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;

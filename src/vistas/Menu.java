@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 280, 260));
+        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 280, 260));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Products.png"))); // NOI18N
@@ -76,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 190, 280, 260));
+        PanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 280, 260));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informe.png"))); // NOI18N
@@ -84,7 +84,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3.setOpaque(false);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeP.png"))); // NOI18N
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeF.png"))); // NOI18N
-        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 280, 260));
+        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 280, 260));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleados.png"))); // NOI18N
@@ -97,7 +97,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 530, 280, 260));
+        PanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 280, 260));
 
         jButton5.setBackground(new Color(0,0,0,0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Proveedores.png"))); // NOI18N
@@ -110,20 +110,20 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 530, 330, 260));
+        PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 190, 330, 260));
 
         jButton6.setBackground(new Color(0,0,0,0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Inventary.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clientessss.png"))); // NOI18N
         jButton6.setBorder(null);
         jButton6.setOpaque(false);
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InventaryP.png"))); // NOI18N
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InventaryF.png"))); // NOI18N
+        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clienteP.png"))); // NOI18N
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clientef.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 530, 280, 260));
+        PanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 280, 260));
 
         jButton8.setBackground(new Color(0,0,0,0));
         jButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N

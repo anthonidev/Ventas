@@ -86,7 +86,7 @@ public class ClienteDAO implements CRUD {
     @Override
     public void eliminar(String idCliente) {
         
-        String sql="delete form cliente where idCliente" ;
+        String sql="delete from Cliente where idCliente=?" ;
         try {
             con=cn.Conectar();
               ps=con.prepareStatement(sql);
