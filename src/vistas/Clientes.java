@@ -7,13 +7,18 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
 import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import vistas.Menu;
@@ -27,6 +32,8 @@ public class Clientes extends javax.swing.JFrame {
     ClienteDAO dao=new ClienteDAO();
     Cliente cl=new Cliente();
     
+    
+    String ruta=null;
     
    DefaultTableModel modelo= new DefaultTableModel();
     public Clientes() {
@@ -60,14 +67,11 @@ public class Clientes extends javax.swing.JFrame {
         txtNumero = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         btnAgregar = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txtidCliente = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -154,13 +158,6 @@ public class Clientes extends javax.swing.JFrame {
         });
         PanelCli.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 180, 50));
 
-        jButton6.setBackground(new Color(0,0,0,0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOAMR.png"))); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setOpaque(false);
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOMAR.png"))); // NOI18N
-        PanelCli.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 150, 40));
-
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(166, 163, 111));
         jLabel2.setText("Apellido:");
@@ -175,9 +172,6 @@ public class Clientes extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(166, 163, 111));
         jLabel4.setText("Nombre:");
         PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 130, 30));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/womann.png"))); // NOI18N
-        PanelCli.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 220, 220));
 
         txtidCliente.setBackground(new Color(0,0,0,0));
         txtidCliente.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -195,13 +189,6 @@ public class Clientes extends javax.swing.JFrame {
         txtNombre.setText("Juan");
         txtNombre.setBorder(null);
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 310, 40));
-
-        jButton2.setBackground(new Color(0,0,0,0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatepho.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatePHOTO.png"))); // NOI18N
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 131, 150, 40));
 
         tabla.setBackground(new java.awt.Color(255, 255, 204));
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -455,9 +442,7 @@ txtidCliente.setEnabled(false);
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> comboSexo;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -465,7 +450,6 @@ txtidCliente.setEnabled(false);
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;

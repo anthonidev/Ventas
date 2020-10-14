@@ -3,6 +3,7 @@ package modelo;
 
 public class Cliente {
     String idCliente, DNI,Nombre,Apellido,Numero,Sexo;
+    
 
     public Cliente() {
     }
