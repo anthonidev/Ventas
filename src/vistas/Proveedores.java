@@ -102,7 +102,7 @@ public class Proveedores extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 310, 40));
+        PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 40));
 
         jSeparator3.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 630, 150, 20));
@@ -183,7 +183,7 @@ public class Proveedores extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(166, 163, 111));
         jLabel4.setText("Nombre:");
-        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 130, 30));
+        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, 30));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(166, 163, 111));
@@ -207,7 +207,7 @@ public class Proveedores extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         jTextField1.setText("Juan");
         jTextField1.setBorder(null);
-        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 40));
+        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 310, 40));
 
         jTable1.setBackground(new java.awt.Color(255, 255, 204));
         jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N

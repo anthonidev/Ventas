@@ -8,7 +8,13 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import vistas.Menu;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import modelo.Empleado;
+import modelo.EmpleadoDAO;
 
 /**
  *
@@ -16,15 +22,18 @@ import vistas.Menu;
  */
 public class Empleados extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Clientes
-     */
+    EmpleadoDAO dao=new EmpleadoDAO();
+    Empleado em=new Empleado();
+    
+    DefaultTableModel modelo= new DefaultTableModel();
     public Empleados() {
+        
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setBackground(new Color(0,0,0,0));
         PanelCli.setBackground(new Color(0,0,0,0));
+        iniciar();
     }
 
     /**
@@ -37,40 +46,40 @@ public class Empleados extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelCli = new javax.swing.JPanel();
+        txtidEmpleado = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        txtApellido = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
+        txtDNI = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jTextField5 = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        id = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
-        jTextField7 = new javax.swing.JTextField();
+        txtfechaIng = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtfechana = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        categoria = new javax.swing.JComboBox<>();
+        txtNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btnAgregar = new javax.swing.JButton();
+        ComboSexo = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -80,51 +89,68 @@ public class Empleados extends javax.swing.JFrame {
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtidEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidEmpleadoActionPerformed(evt);
+            }
+        });
+        PanelCli.add(txtidEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 120, 30));
+
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 310, 20));
 
-        jButton4.setBackground(new Color(0,0,0,0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setOpaque(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
-        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 180, 50));
-
-        jButton5.setBackground(new Color(0,0,0,0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setOpaque(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
-        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 160, 180, 50));
-
-        jTextField3.setBackground(new Color(0,0,0,0));
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField3.setText("Quispe Perez");
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setBackground(new Color(0,0,0,0));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
+        btnActualizar.setBorder(null);
+        btnActualizar.setOpaque(false);
+        btnActualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
-        PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 310, 40));
+        PanelCli.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, 180, 50));
+
+        btnEliminar.setBackground(new Color(0,0,0,0));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
+        btnEliminar.setBorder(null);
+        btnEliminar.setOpaque(false);
+        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        PanelCli.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 160, 180, 50));
+
+        txtApellido.setBackground(new Color(0,0,0,0));
+        txtApellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtApellido.setText("Quispe Perez");
+        txtApellido.setBorder(null);
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+        PanelCli.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 310, 40));
 
         jSeparator3.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 630, 150, 20));
 
-        jTextField4.setBackground(new Color(0,0,0,0));
-        jTextField4.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField4.setText("484894984");
-        jTextField4.setBorder(null);
-        PanelCli.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 310, 40));
+        txtDNI.setBackground(new Color(0,0,0,0));
+        txtDNI.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtDNI.setText("484894984");
+        txtDNI.setBorder(null);
+        PanelCli.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 310, 40));
 
         jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 310, 20));
 
-        jTextField5.setBackground(new Color(0,0,0,0));
-        jTextField5.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField5.setText("9586146625");
-        jTextField5.setBorder(null);
-        PanelCli.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 310, 40));
+        txtNumero.setBackground(new Color(0,0,0,0));
+        txtNumero.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtNumero.setText("9586146625");
+        txtNumero.setBorder(null);
+        PanelCli.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 310, 40));
 
         jSeparator5.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 310, 20));
@@ -141,12 +167,8 @@ public class Empleados extends javax.swing.JFrame {
         });
         PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 790, 290, 60));
 
-        jButton6.setBackground(new Color(0,0,0,0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOAMR.png"))); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setOpaque(false);
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TOMAR.png"))); // NOI18N
-        PanelCli.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 150, 40));
+        id.setText("jTextField1");
+        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -166,11 +188,11 @@ public class Empleados extends javax.swing.JFrame {
         jSeparator6.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 700, 150, 20));
 
-        jTextField7.setBackground(new Color(0,0,0,0));
-        jTextField7.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField7.setText("9586146625");
-        jTextField7.setBorder(null);
-        PanelCli.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 150, 40));
+        txtfechaIng.setBackground(new Color(0,0,0,0));
+        txtfechaIng.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtfechaIng.setText("9586146625");
+        txtfechaIng.setBorder(null);
+        PanelCli.add(txtfechaIng, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 150, 40));
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(166, 163, 111));
@@ -192,11 +214,11 @@ public class Empleados extends javax.swing.JFrame {
         jLabel7.setText("Fecha  :");
         PanelCli.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, 120, 30));
 
-        jTextField6.setBackground(new Color(0,0,0,0));
-        jTextField6.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField6.setText("9586146625");
-        jTextField6.setBorder(null);
-        PanelCli.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 150, 40));
+        txtfechana.setBackground(new Color(0,0,0,0));
+        txtfechana.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtfechana.setText("9586146625");
+        txtfechana.setBorder(null);
+        PanelCli.add(txtfechana, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 150, 40));
 
         jSeparator7.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 570, 310, 20));
@@ -216,58 +238,57 @@ public class Empleados extends javax.swing.JFrame {
         jLabel4.setText("Nombre:");
         PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 130, 30));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/womann.png"))); // NOI18N
-        PanelCli.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 220, 220));
-
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(166, 163, 111));
         jLabel12.setText("Categoria:");
         PanelCli.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 790, 150, 30));
 
-        jComboBox2.setBackground(new java.awt.Color(166, 163, 111));
-        jComboBox2.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(166, 163, 111));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Vendedor" }));
-        jComboBox2.setBorder(null);
-        jComboBox2.setOpaque(false);
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        PanelCli.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 780, 170, 40));
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
-        jTextField1.setBackground(new Color(0,0,0,0));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField1.setText("Juan");
-        jTextField1.setBorder(null);
-        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 40));
+        categoria.setBackground(new java.awt.Color(166, 163, 111));
+        categoria.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        categoria.setForeground(new java.awt.Color(166, 163, 111));
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administracion", "vendedor", "Limpieza" }));
+        categoria.setBorder(null);
+        categoria.setOpaque(false);
+        categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriaActionPerformed(evt);
+            }
+        });
+        PanelCli.add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 780, 170, 40));
 
-        jButton2.setBackground(new Color(0,0,0,0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatepho.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/updatePHOTO.png"))); // NOI18N
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 131, 150, 40));
+        txtNombre.setBackground(new Color(0,0,0,0));
+        txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtNombre.setText("Juan");
+        txtNombre.setBorder(null);
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 40));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 204));
-        jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(102, 102, 102));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setBackground(new java.awt.Color(255, 255, 204));
+        tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tabla.setForeground(new java.awt.Color(102, 102, 102));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"878978", "Pedro", "Lopez ", "8789798", "Masculino", null, null},
-                {"484764", "Luis", "Chilon Torres", "5646846", "Masculino", null, null},
-                {"545456456", "Yoselim", "Rojas Acevedo", "518498894", "Femenino", null, null},
-                {"5646846", "Daniel", "Rodas Campos", "51785485458", "Masculino", null, null},
-                {"56646546", "Juana", "Quispe Lopes", "515565656565", "Femenino", null, null}
+
             },
             new String [] {
-                "DNI", "NOMBRE", "APELLIDO", "NUMERO", "SEXO", "FECHA INGR.", "Categoria"
+                "idEmpleado", "DNI", "NOMBRE", "APELLIDO", "NUMERO", "FECHA NA", "FECHA INGR.", "IDCATEGORIA", "SEXO"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 720, 490));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 720, 490));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
@@ -279,25 +300,30 @@ public class Empleados extends javax.swing.JFrame {
         jLabel5.setText("DNI:");
         PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 100, 30));
 
-        jButton8.setBackground(new Color(0,0,0,0));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
-        jButton8.setBorder(null);
-        jButton8.setOpaque(false);
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
-        PanelCli.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 180, 50));
-
-        jComboBox1.setBackground(new java.awt.Color(166, 163, 111));
-        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(166, 163, 111));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Masculino", "Femenino" }));
-        jComboBox1.setBorder(null);
-        jComboBox1.setOpaque(false);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setBackground(new Color(0,0,0,0));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
+        btnAgregar.setBorder(null);
+        btnAgregar.setOpaque(false);
+        btnAgregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        PanelCli.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 720, 170, 40));
+        PanelCli.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 160, 180, 50));
+
+        ComboSexo.setBackground(new java.awt.Color(166, 163, 111));
+        ComboSexo.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        ComboSexo.setForeground(new java.awt.Color(166, 163, 111));
+        ComboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "M", "F" }));
+        ComboSexo.setBorder(null);
+        ComboSexo.setOpaque(false);
+        ComboSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboSexoActionPerformed(evt);
+            }
+        });
+        PanelCli.add(ComboSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 720, 170, 40));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
@@ -321,17 +347,17 @@ public class Empleados extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void ComboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboSexoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_ComboSexoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtApellidoActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_categoriaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Menu mn = new Menu();
@@ -349,23 +375,225 @@ public class Empleados extends javax.swing.JFrame {
                 dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+       agregar();
+        limpiar();
+         listar();
+         idAleatorio();
+         nuevo();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+       actualizar();
+       limpiar();
+        listar();
+        idAleatorio();
+        nuevo();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         eliminar();
+        limpiar();
+         listar();
+         idAleatorio();
+         nuevo();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int fila=tabla.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }else{
+            String idEmpleado=tabla.getValueAt(fila, 0).toString();
+        String dni=tabla.getValueAt(fila, 1).toString();
+        String nom=tabla.getValueAt(fila, 2).toString();
+        String ape=tabla.getValueAt(fila, 3).toString();
+        String numero=tabla.getValueAt(fila, 4).toString();  
+        String fechana=tabla.getValueAt(fila, 5).toString();  
+        String fechaing=tabla.getValueAt(fila, 6).toString();  
+        String idcategoria=tabla.getValueAt(fila, 7).toString();  
+        String sexo=tabla.getValueAt(fila, 8).toString();
+         String idcat;
+        if(idcategoria.equalsIgnoreCase("01")){
+            idcat="Administracion";
+        }else if(idcategoria.equalsIgnoreCase("02")){
+        idcat="Vendedor";
+         }else{
+            idcat="Limpieza";
+        }
+        
+        
+        txtidEmpleado.setText(idEmpleado);
+        txtDNI.setText(dni);
+        txtNombre.setText(nom);
+        txtApellido.setText(ape);
+        txtNumero.setText(numero);
+        txtfechana.setText(fechana);
+        txtfechaIng.setText(fechaing);
+        categoria.setSelectedItem(idcat);
+        ComboSexo.setSelectedItem(sexo);
+        }
+    }//GEN-LAST:event_tablaMouseClicked
+
+    private void txtidEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidEmpleadoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        iniciar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+   void iniciar(){
+       listar();
+       idAleatorio();
+   }
+    
+    
+    void agregar(){
+        String idEmpleado=txtidEmpleado.getText();
+        String dni=txtDNI.getText();
+        String nom=txtNombre.getText();
+        String ape=txtApellido.getText();
+        String numero=txtNumero.getText();  
+        String FechaNa=txtfechana.getText();  
+        String FechaIng=txtfechaIng.getText(); 
+        String idCategoria=(String) categoria.getSelectedItem();
+        String sexo=(String) ComboSexo.getSelectedItem();
+        String idcat;
+        if(idCategoria=="Administracion"){
+            idcat="01";
+        }else if(idCategoria=="Vendedor"){
+        idcat="02";
+         }else{
+            idcat="03";
+        }
+        
+        Object[] ob=new Object[9];
+        ob[0]=idEmpleado;
+        ob[1]=dni;
+        ob[2]=nom;
+        ob[3]=ape;
+        ob[4]=numero;
+        ob[5]=FechaNa;
+        ob[6]=FechaIng;
+        ob[7]=idcat;
+        ob[8]=sexo;
+        
+         dao.add(ob);
+         
+       
+    }
+    
+    void idAleatorio(){
+        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
+        txtidEmpleado.setText(Integer.toString(numero));
+        txtidEmpleado.setEditable(false);
+        txtidEmpleado.setEnabled(false);
+    }
+    
+  
+        
+    void actualizar(){
+        int fila=tabla.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }else{
+            String idEmpleado=txtidEmpleado.getText();
+        String dni=txtDNI.getText();
+        String nom=txtNombre.getText();
+        String ape=txtApellido.getText();
+        String numero=txtNumero.getText();  
+        String FechaNa=txtfechana.getText();  
+        String FechaIng=txtfechaIng.getText(); 
+        String idCategoria=(String) categoria.getSelectedItem();
+        String sexo=(String) ComboSexo.getSelectedItem();
+        String idcat;
+        if(idCategoria=="Administracion"){
+            idcat="01";
+        }else if(idCategoria=="Vendedor"){
+        idcat="02";
+         }else{
+            idcat="03";
+        }
+        
+        Object[] ob=new Object[9];
+           ob[8]=idEmpleado;
+           ob[0]=dni;
+           ob[1]=nom;
+            ob[2]=ape;
+            ob[3]=numero;
+            ob[4]=FechaNa;
+            ob[5]=FechaIng;
+           ob[6]=idcat;
+            ob[7]=sexo;
+        
+         dao.actualizarEmpleado(ob);
+         System.out.println("exito");
+        }      
+       
+    }
+    void eliminar(){
+         int fila=tabla.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(this,"Seleccione una fila");
+        }else{
+            String idEmpleado=tabla.getValueAt(fila, 0).toString();
+            dao.eliminarEmpleado(idEmpleado);
+        }
+    }
+    void listar(){
+        List<Empleado> lista=dao.listarEmpleado();
+        modelo=(DefaultTableModel)tabla.getModel();
+        Object[]ob=new Object[9];
+        for(int i=0;i< lista.size();i++){
+            ob[0]=lista.get(i).getIdEmpleado();
+            ob[1]=lista.get(i).getDNI();
+            ob[2]=lista.get(i).getNombre();
+            ob[3]=lista.get(i).getApellido();
+            ob[4]=lista.get(i).getNumero();
+            ob[5]=lista.get(i).getFechaNa();
+            ob[6]=lista.get(i).getFechaIng();
+            ob[7]=lista.get(i).getIdCategoria();
+            ob[8]=lista.get(i).getSexo();
+            
+            modelo.addRow(ob);
+        }
+        
+        tabla.setModel(modelo);
+    }
+    void nuevo(){
+        txtidEmpleado.setText("");
+        txtDNI.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtNumero.setText("");
+        txtfechana.setText("");
+        txtfechaIng.setText("");
+        categoria.setSelectedItem("Seleccionar");
+        ComboSexo.setSelectedItem("Seleccionar");
+        txtNombre.requestFocus();
+    }
+    void limpiar(){
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i=i-1;
+        }
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboSexo;
     private javax.swing.JPanel PanelCli;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox<String> categoria;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -376,7 +604,6 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -385,12 +612,13 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtDNI;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtfechaIng;
+    private javax.swing.JTextField txtfechana;
+    private javax.swing.JTextField txtidEmpleado;
     // End of variables declaration//GEN-END:variables
 }

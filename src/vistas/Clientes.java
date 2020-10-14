@@ -7,18 +7,13 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 import vistas.Menu;
@@ -33,7 +28,7 @@ public class Clientes extends javax.swing.JFrame {
     Cliente cl=new Cliente();
     
     
-    String ruta=null;
+   
     
    DefaultTableModel modelo= new DefaultTableModel();
     public Clientes() {
@@ -362,10 +357,9 @@ public class Clientes extends javax.swing.JFrame {
     
     void idAleatorio(){
         int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-    String cadena = Integer.toString(numero);
-    txtidCliente.setText(cadena);
-    txtidCliente.setEditable(false);
-txtidCliente.setEnabled(false);
+        txtidCliente.setText(Integer.toString(numero));
+        txtidCliente.setEditable(false);
+        txtidCliente.setEnabled(false);
     }
     void actualizar(){
         int fila=tabla.getSelectedRow();
@@ -407,8 +401,6 @@ txtidCliente.setEnabled(false);
         Object[]ob=new Object[6];
         for(int i=0;i< lista.size();i++){
             ob[0]=lista.get(i).getDNI();
-            
-            
             ob[1]=lista.get(i).getNombre();
             ob[2]=lista.get(i).getApellido();
             ob[3]=lista.get(i).getNumero();

@@ -8,6 +8,9 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import modelo.Cliente;
+import modelo.ClienteDAO;
 import vistas.Menu;
 
 /**
@@ -16,9 +19,7 @@ import vistas.Menu;
  */
 public class Venta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Venta
-     */
+   ClienteDAO cdao=new ClienteDAO();
     public Venta() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,7 +47,7 @@ public class Venta extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtcliente = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         txtPrecio = new javax.swing.JTextField();
         txtCodCli = new javax.swing.JTextField();
@@ -94,6 +95,11 @@ public class Venta extends javax.swing.JFrame {
         buscarCl.setBorder(null);
         buscarCl.setOpaque(false);
         buscarCl.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
+        buscarCl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarClActionPerformed(evt);
+            }
+        });
         PanelVentas.add(buscarCl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,17 +115,17 @@ public class Venta extends javax.swing.JFrame {
         PanelVentas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 810, 560));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel2.setText("COD. Cliente:");
+        jLabel2.setText("DNI Cliente:");
         PanelVentas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
         jLabel5.setText("Cantidad:");
         PanelVentas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, -1, -1));
 
-        jTextField6.setBackground(new java.awt.Color(162, 162, 151));
-        jTextField6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jTextField6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelVentas.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 380, 30));
+        txtcliente.setBackground(new java.awt.Color(162, 162, 151));
+        txtcliente.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtcliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 380, 30));
         PanelVentas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 220, 10));
 
         txtPrecio.setBackground(new Color(0,0,0,0));
@@ -258,6 +264,30 @@ public class Venta extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void buscarClActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarClActionPerformed
+       buscarCliente();
+    }//GEN-LAST:event_buscarClActionPerformed
+
+    void buscarCliente(){
+        int r;
+        String cod=txtCodCli.getText();
+        if(txtCodCli.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "debe ingresar cod cliente");
+        }else{
+            Cliente Cliente=cdao.listarID(cod);
+            if(Cliente.getDNI()!=null){
+                txtcliente.setText(Cliente.getNombre() +" "+Cliente.getApellido() );
+                txtCodPro.requestFocus();
+            }else{
+                            r=JOptionPane.showConfirmDialog(this, "Cliente no registrado, Desea registrar");
+                            if(r==0){
+                                Clientes Ct = new Clientes();
+                                    Ct.setVisible(true);
+                                dispose();
+                            }
+            }
+        }
+    }
 
     
 
@@ -285,10 +315,10 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField txtCodCli;
     private javax.swing.JTextField txtCodPro;
     private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtcliente;
     // End of variables declaration//GEN-END:variables
 }

@@ -22,7 +22,28 @@ public class ClienteDAO implements CRUD {
     PreparedStatement ps;
     ResultSet rs;
 
-    @Override
+    public Cliente listarID(String DNI){
+        Cliente c=new Cliente();
+       String sql="select * from Cliente where DNI=?" ;
+        try {
+            
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, DNI);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                
+                c.setIdCliente(rs.getString(1));
+                c.setDNI(rs.getString(2));
+                c.setNombre(rs.getString(3));
+                c.setApellido(rs.getString(4));
+                c.setNumero(rs.getString(5));
+                c.setSexo(rs.getString(6));
+            }
+        } catch (Exception e) {
+        }
+        return c;
+    }
     public List listar() {
         List<Cliente> lista =new ArrayList<>();
         String sql="select * from Cliente";
