@@ -12,7 +12,32 @@ public class EmpleadoDAO {
     PreparedStatement ps;
     ResultSet rs;
    
-    
+ public Empleado listarDNI(String DNI){
+        Empleado em=new Empleado();
+       String sql="select * from Empleado where DNI=?" ;
+        try {
+            
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            ps.setString(2, DNI);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                
+                em.setIdEmpleado(    rs.getString(1));
+                em.setDNI(rs.getString(2));
+                em.setNombre(rs.getString(3));
+                em.setApellido(rs.getString(4));
+                em.setNumero(rs.getString(5));
+                em.setFechaNa(rs.getString(6));
+                em.setFechaIng(rs.getString(7));
+                em.setIdCategoria(rs.getString(8));
+                em.setSexo(rs.getString(9));
+                
+            }
+        } catch (Exception e) {
+        }
+        return em;
+    }   
  public List listarEmpleado() {
         List<Empleado> lista =new ArrayList<>();
         String sql="select * from Empleado";

@@ -8,6 +8,9 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import modelo.Empleado;
+import modelo.EmpleadoDAO;
 import vistas.Menu;
 
 /**
@@ -16,9 +19,7 @@ import vistas.Menu;
  */
 public class RegistrarUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Clientes
-     */
+    EmpleadoDAO dao=new EmpleadoDAO();
     public RegistrarUsuario() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,28 +38,27 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelCli = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        txtNombre = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        ComboNivel = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jButton2 = new javax.swing.JButton();
         jPasswordField2 = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
+        id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,21 +67,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBackground(new java.awt.Color(162, 162, 151));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField1.setText("Administrador");
-        jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelCli.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 300, 40));
-
-        jTextField2.setBackground(new Color(0,0,0,0));
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField2.setText("01");
-        jTextField2.setBorder(null);
-        jTextField2.setOpaque(false);
-        PanelCli.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 130, 40));
-
         jTextField3.setBackground(new Color(0,0,0,0));
         jTextField3.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField3.setText("JUANPO");
         jTextField3.setBorder(null);
         jTextField3.setOpaque(false);
@@ -92,17 +80,17 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         });
         PanelCli.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 190, 40));
 
-        jTextField6.setBackground(new Color(0,0,0,0));
-        jTextField6.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField6.setText("0000");
-        jTextField6.setBorder(null);
-        jTextField6.setOpaque(false);
-        PanelCli.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 130, 40));
+        txtDni.setBackground(new Color(0,0,0,0));
+        txtDni.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtDni.setText("0000");
+        txtDni.setBorder(null);
+        txtDni.setOpaque(false);
+        PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 130, 40));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel2.setText("Codigo de Empleado");
-        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+        jLabel2.setText("DNI");
+        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(166, 163, 111));
@@ -114,18 +102,10 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jLabel5.setText("Repetir Contraseña");
         PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 680, -1, -1));
 
-        jTextField7.setBackground(new java.awt.Color(162, 162, 151));
-        jTextField7.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        jTextField7.setText("Juan Perez");
-        jTextField7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelCli.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 300, 40));
-
-        jButton2.setBackground(new Color(0,0,0,0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
+        txtNombre.setBackground(new java.awt.Color(162, 162, 151));
+        txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 300, 40));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
@@ -150,22 +130,28 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel3.setText("Codigo de Nivel");
-        PanelCli.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jLabel3.setText("Nivel");
+        PanelCli.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
         jLabel6.setText("Contraseña");
         PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 580, -1, -1));
 
-        jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 130, 10));
+        ComboNivel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        ComboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Vendedor", "Contabilidad" }));
+        PanelCli.add(ComboNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 190, 40));
 
         jButton1.setBackground(new Color(0,0,0,0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         jPasswordField1.setBackground(new Color(0,0,0,0));
@@ -173,6 +159,14 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jPasswordField1.setBorder(null);
         jPasswordField1.setOpaque(false);
         PanelCli.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 720, 190, 30));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
 
         jPasswordField2.setBackground(new Color(0,0,0,0));
         jPasswordField2.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -192,8 +186,11 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jSeparator7.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 130, 10));
 
+        id.setText("c");
+        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
-        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 930));
+        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 720, 930));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 720, 930);
@@ -206,13 +203,58 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-   
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       buscarEmpleado();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    
+    
+    String BuscarNivel(){
+        String codNivel=(String) ComboNivel.getSelectedItem();
+        String idNivel = null;
+        if (codNivel.equals("Seleccionar")){
+            JOptionPane.showMessageDialog(this,"Seleccione una opción de Nivel");
+        }else if (codNivel.equals("Administrador")){
+            idNivel="01";
+        }else if(codNivel.equals("Vendedor")){
+            idNivel="02";
+            }else{
+            idNivel="03";
+        }
+        
+        return idNivel;
+    }
+void buscarEmpleado(){
+        int r;
+        String DNI=txtDni.getText();
+        if(txtDni.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe ingresar DNI del Usuario a registrar");
+        }else{
+            Empleado Empleado=dao.listarDNI(DNI);
+            if(Empleado.getDNI()!=null){
+                txtNombre.setText(Empleado.getNombre() +" "+Empleado.getApellido() );
+                id.setText(Empleado.getIdEmpleado());
+                ComboNivel.requestFocus();
+            }else{
+                            r=JOptionPane.showConfirmDialog(this, "Cliente no registrado, Desea registrar");
+                            if(r==0){
+                                Clientes Ct = new Clientes();
+                                    Ct.setVisible(true);
+                                dispose();
+                            }
+            }
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboNivel;
     private javax.swing.JPanel PanelCli;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -226,15 +268,12 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

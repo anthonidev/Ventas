@@ -8,6 +8,8 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
@@ -34,6 +36,7 @@ public class Empleados extends javax.swing.JFrame {
         this.setBackground(new Color(0,0,0,0));
         PanelCli.setBackground(new Color(0,0,0,0));
         iniciar();
+        fechaActual();
     }
 
     /**
@@ -57,11 +60,11 @@ public class Empleados extends javax.swing.JFrame {
         txtNumero = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         txtfechaIng = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        txtFechaHoy = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -71,7 +74,6 @@ public class Empleados extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         categoria = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -94,7 +96,7 @@ public class Empleados extends javax.swing.JFrame {
                 txtidEmpleadoActionPerformed(evt);
             }
         });
-        PanelCli.add(txtidEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 120, 30));
+        PanelCli.add(txtidEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 120, 30));
 
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
         PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 310, 20));
@@ -125,7 +127,6 @@ public class Empleados extends javax.swing.JFrame {
 
         txtApellido.setBackground(new Color(0,0,0,0));
         txtApellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtApellido.setText("Quispe Perez");
         txtApellido.setBorder(null);
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +140,6 @@ public class Empleados extends javax.swing.JFrame {
 
         txtDNI.setBackground(new Color(0,0,0,0));
         txtDNI.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtDNI.setText("484894984");
         txtDNI.setBorder(null);
         PanelCli.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 310, 40));
 
@@ -148,8 +148,12 @@ public class Empleados extends javax.swing.JFrame {
 
         txtNumero.setBackground(new Color(0,0,0,0));
         txtNumero.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNumero.setText("9586146625");
         txtNumero.setBorder(null);
+        txtNumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroActionPerformed(evt);
+            }
+        });
         PanelCli.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 310, 40));
 
         jSeparator5.setForeground(new java.awt.Color(166, 163, 111));
@@ -166,9 +170,6 @@ public class Empleados extends javax.swing.JFrame {
             }
         });
         PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 790, 290, 60));
-
-        id.setText("jTextField1");
-        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -190,7 +191,6 @@ public class Empleados extends javax.swing.JFrame {
 
         txtfechaIng.setBackground(new Color(0,0,0,0));
         txtfechaIng.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtfechaIng.setText("9586146625");
         txtfechaIng.setBorder(null);
         PanelCli.add(txtfechaIng, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, 150, 40));
 
@@ -198,6 +198,10 @@ public class Empleados extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(166, 163, 111));
         jLabel11.setText("nacimiento");
         PanelCli.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 160, 30));
+
+        txtFechaHoy.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtFechaHoy.setText("15");
+        PanelCli.add(txtFechaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 180, 70));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(166, 163, 111));
@@ -216,7 +220,6 @@ public class Empleados extends javax.swing.JFrame {
 
         txtfechana.setBackground(new Color(0,0,0,0));
         txtfechana.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtfechana.setText("9586146625");
         txtfechana.setBorder(null);
         PanelCli.add(txtfechana, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 150, 40));
 
@@ -243,14 +246,6 @@ public class Empleados extends javax.swing.JFrame {
         jLabel12.setText("Categoria:");
         PanelCli.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 790, 150, 30));
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
-
         categoria.setBackground(new java.awt.Color(166, 163, 111));
         categoria.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         categoria.setForeground(new java.awt.Color(166, 163, 111));
@@ -266,7 +261,6 @@ public class Empleados extends javax.swing.JFrame {
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNombre.setText("Juan");
         txtNombre.setBorder(null);
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 310, 40));
 
@@ -378,24 +372,24 @@ public class Empleados extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
        agregar();
         limpiar();
-         listar();
-         idAleatorio();
+         iniciar();
+        fechaActual();
          nuevo();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
        actualizar();
        limpiar();
-        listar();
-        idAleatorio();
+       iniciar();
+        fechaActual();
         nuevo();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
          eliminar();
         limpiar();
-         listar();
-         idAleatorio();
+         iniciar();
+        fechaActual();
          nuevo();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -439,16 +433,28 @@ public class Empleados extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidEmpleadoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        iniciar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroActionPerformed
 
     
    void iniciar(){
        listar();
        idAleatorio();
+        txtidEmpleado.setVisible(false);
    }
-    
+    void fechaActual(){
+        
+        String dia,mes,año;
+        Calendar c= Calendar.getInstance();
+        
+        dia = Integer.toString(c.get(Calendar.DATE));
+        mes = Integer.toString(c.get(Calendar.MONTH)+1);
+        año = Integer.toString(c.get(Calendar.YEAR));
+        
+        txtFechaHoy.setText(año+"-"+mes+"-"+dia);
+        
+    }
     
     void agregar(){
         String idEmpleado=txtidEmpleado.getText();
@@ -589,9 +595,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> categoria;
-    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
@@ -615,6 +619,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtDNI;
+    private javax.swing.JTextField txtFechaHoy;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtfechaIng;
