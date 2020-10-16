@@ -201,6 +201,11 @@ public class Empleados extends javax.swing.JFrame {
 
         txtFechaHoy.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtFechaHoy.setText("15");
+        txtFechaHoy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaHoyActionPerformed(evt);
+            }
+        });
         PanelCli.add(txtFechaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 180, 70));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -436,6 +441,10 @@ public class Empleados extends javax.swing.JFrame {
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroActionPerformed
+
+    private void txtFechaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaHoyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaHoyActionPerformed
 
     
    void iniciar(){

@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/NivelDao.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Login.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/RegistrarUsuario.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/EmpleadoDAO.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/ClienteDAO.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/UsuarioDAO.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/ProveedorDAO.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Clientes.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Empleados.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/Nivel.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Venta.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Menu.java</file>
         </group>

@@ -18,7 +18,7 @@ import vistas.Menu;
  * @author anthoni
  */
 public class Venta extends javax.swing.JFrame {
-
+    
    ClienteDAO cdao=new ClienteDAO();
     public Venta() {
         initComponents();

@@ -12,14 +12,14 @@ public class EmpleadoDAO {
     PreparedStatement ps;
     ResultSet rs;
    
- public Empleado listarDNI(String DNI){
+ public Empleado listarDNI(String IdEmpleado){
         Empleado em=new Empleado();
        String sql="select * from Empleado where DNI=?" ;
         try {
             
             con=cn.Conectar();
             ps=con.prepareStatement(sql);
-            ps.setString(2, DNI);
+            ps.setString(1, IdEmpleado);
             rs=ps.executeQuery();
             while(rs.next()){
                 

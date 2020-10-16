@@ -12,6 +12,10 @@ public class UsuarioDAO {
     Conexion con=new Conexion();
     Connection acceso;
     
+     
+    
+    
+    
     public EntidadUsuario ValidadUsuario(String usuario, String clave){
             EntidadUsuario eu=new EntidadUsuario();
 
@@ -33,4 +37,34 @@ public class UsuarioDAO {
         return eu;
     }
     
+    
+   public int agregar(Object[] ob) {
+        int r=0;
+        String  sql="insert into Usuario(usuario,clave,idNivel,IdEmpleado)values(?,?,?,?)";
+        try {
+            acceso=con.Conectar();
+            ps=acceso.prepareStatement(sql);
+            ps.setObject(1, ob[0]);
+            ps.setObject(2, ob[1]);
+            ps.setObject(3, ob[2]);
+            ps.setObject(4, ob[3]);
+           
+            r=ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return r;
+    }
+   
+    public void eliminarUsuario(String IdEmpleado) {
+        
+        String sql="delete from Usuario where IdEmpleado=?" ;
+        try {
+            acceso=con.Conectar();
+              ps=acceso.prepareStatement(sql);
+              ps.setString(4,IdEmpleado);
+              ps.executeUpdate();
+        } catch (Exception e) {
+        }
+       
+    }
 }

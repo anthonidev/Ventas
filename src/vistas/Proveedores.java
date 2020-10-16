@@ -154,7 +154,7 @@ public class Proveedores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 720, 490));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 750, 530));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
