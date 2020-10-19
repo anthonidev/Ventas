@@ -4,16 +4,18 @@ package modelo;
 public class Producto {
     String idProducto,nombre,idProveedor,Descripcion;
     double precio;
+    int Stock;
 
     public Producto() {
     }
 
-    public Producto(String idProducto, String nombre, String idProveedor, String Descripcion, double precio) {
+    public Producto(String idProducto, String nombre, String idProveedor, String Descripcion, double precio, int Stock) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.idProveedor = idProveedor;
         this.Descripcion = Descripcion;
         this.precio = precio;
+        this.Stock = Stock;
     }
 
     public String getIdProducto() {
@@ -56,6 +58,15 @@ public class Producto {
         this.precio = precio;
     }
 
+    public int getStock() {
+        return Stock;
+    }
+
+    public void setStock(int Stock) {
+        this.Stock = Stock;
+    }
+
+   
   
     
     

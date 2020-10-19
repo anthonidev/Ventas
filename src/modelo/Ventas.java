@@ -3,16 +3,15 @@ package modelo;
 
 
 public class Ventas {
-    String idVentas,idCliente,idEmpleado,FechaVenta;
+    String idVentas,idCliente,FechaVenta;
     double monto;
 
     public Ventas() {
     }
 
-    public Ventas(String idVentas, String idCliente, String idEmpleado, String FechaVenta, double monto) {
+    public Ventas(String idVentas, String idCliente, String FechaVenta, double monto) {
         this.idVentas = idVentas;
         this.idCliente = idCliente;
-        this.idEmpleado = idEmpleado;
         this.FechaVenta = FechaVenta;
         this.monto = monto;
     }
@@ -25,9 +24,7 @@ public class Ventas {
         return idCliente;
     }
 
-    public String getIdEmpleado() {
-        return idEmpleado;
-    }
+    
 
     public String getFechaVenta() {
         return FechaVenta;
@@ -45,9 +42,7 @@ public class Ventas {
         this.idCliente = idCliente;
     }
 
-    public void setIdEmpleado(String idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
+  
 
     public void setFechaVenta(String FechaVenta) {
         this.FechaVenta = FechaVenta;

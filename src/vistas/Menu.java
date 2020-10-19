@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 280, 260));
+        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 280, 260));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Products.png"))); // NOI18N
@@ -141,7 +141,7 @@ public class Menu extends javax.swing.JFrame {
         PanelMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CA.png"))); // NOI18N
-        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, -1));
 
         getContentPane().add(PanelMenu);
         PanelMenu.setBounds(0, 0, 1360, 910);

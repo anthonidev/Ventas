@@ -8,9 +8,15 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
+import modelo.Producto;
+import modelo.ProductoDAO;
+import modelo.VentasDAO;
 import vistas.Menu;
 
 /**
@@ -20,6 +26,13 @@ import vistas.Menu;
 public class Venta extends javax.swing.JFrame {
     
    ClienteDAO cdao=new ClienteDAO();
+   ProductoDAO pdao=new ProductoDAO();
+   VentasDAO vdao=new VentasDAO();
+   Producto p=new Producto();
+   
+   DefaultTableModel modelo = new DefaultTableModel();
+   String idP;
+   double Tpagar;
     public Venta() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -39,12 +52,12 @@ public class Venta extends javax.swing.JFrame {
 
         PanelVentas = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        serie = new javax.swing.JTextField();
+        txtNombrePr = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         buscarCl = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtcliente = new javax.swing.JTextField();
@@ -58,10 +71,12 @@ public class Venta extends javax.swing.JFrame {
         buscarCod = new javax.swing.JButton();
         Cant = new javax.swing.JSpinner();
         jButton3 = new javax.swing.JButton();
+        TotalaPagar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField7 = new javax.swing.JTextField();
+        Stock = new javax.swing.JSpinner();
         jButton7 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -74,22 +89,22 @@ public class Venta extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
         jLabel3.setText("N° DE SERIE");
-        PanelVentas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        PanelVentas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        PanelVentas.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 180, 40));
+        serie.setBackground(new java.awt.Color(0, 153, 153));
+        serie.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        PanelVentas.add(serie, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, 40));
 
-        jTextField2.setBackground(new java.awt.Color(162, 162, 151));
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNombrePr.setBackground(new java.awt.Color(162, 162, 151));
+        txtNombrePr.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtNombrePr.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtNombrePr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtNombrePrActionPerformed(evt);
             }
         });
-        PanelVentas.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 30));
-        PanelVentas.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 630, 130, 10));
+        PanelVentas.add(txtNombrePr, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 380, 30));
+        PanelVentas.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 80, 10));
 
         buscarCl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
         buscarCl.setBorder(null);
@@ -100,9 +115,9 @@ public class Venta extends javax.swing.JFrame {
                 buscarClActionPerformed(evt);
             }
         });
-        PanelVentas.add(buscarCl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, -1, -1));
+        PanelVentas.add(buscarCl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -110,41 +125,42 @@ public class Venta extends javax.swing.JFrame {
                 "NRO", "COD", "PRODUCTO", "CANTIDAD", "PRECIO UNI", "TOTAL"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         PanelVentas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 810, 560));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
         jLabel2.setText("DNI Cliente:");
-        PanelVentas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
+        PanelVentas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel5.setText("Cantidad:");
-        PanelVentas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, -1, -1));
+        jLabel5.setText("Stock");
+        PanelVentas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
 
         txtcliente.setBackground(new java.awt.Color(162, 162, 151));
         txtcliente.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtcliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 380, 30));
-        PanelVentas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, 220, 10));
+        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 380, 30));
+        PanelVentas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 220, 10));
 
         txtPrecio.setBackground(new Color(0,0,0,0));
         txtPrecio.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtPrecio.setBorder(null);
-        PanelVentas.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 590, 130, 40));
+        PanelVentas.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 80, 40));
 
         txtCodCli.setBackground(new Color(0,0,0,0));
         txtCodCli.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtCodCli.setText("58585858");
         txtCodCli.setBorder(null);
-        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 220, 30));
+        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 220, 30));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
         jLabel6.setText("Precio:");
-        PanelVentas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, -1, -1));
+        PanelVentas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
         jLabel4.setText("COD. Producto:");
-        PanelVentas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
+        PanelVentas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar1.png"))); // NOI18N
         jButton4.setBorder(null);
@@ -159,17 +175,23 @@ public class Venta extends javax.swing.JFrame {
 
         txtCodPro.setBackground(new Color(0,0,0,0));
         txtCodPro.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        txtCodPro.setText("00001");
         txtCodPro.setBorder(null);
-        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 220, 30));
+        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 220, 30));
 
         buscarCod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
         buscarCod.setBorder(null);
         buscarCod.setOpaque(false);
         buscarCod.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
-        PanelVentas.add(buscarCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, -1));
+        buscarCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarCodActionPerformed(evt);
+            }
+        });
+        PanelVentas.add(buscarCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
 
         Cant.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        PanelVentas.add(Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 660, 70, 40));
+        PanelVentas.add(Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 610, 70, 40));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
@@ -177,15 +199,23 @@ public class Venta extends javax.swing.JFrame {
         jButton3.setOpaque(false);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarp.png"))); // NOI18N
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarF.png"))); // NOI18N
-        PanelVentas.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 710, -1, -1));
-        PanelVentas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 220, 10));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        PanelVentas.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 710, -1, -1));
 
-        jTextField7.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField7.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("15");
-        jTextField7.setBorder(null);
-        PanelVentas.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 780, 140, 50));
+        TotalaPagar.setBackground(new java.awt.Color(153, 153, 153));
+        TotalaPagar.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        TotalaPagar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TotalaPagar.setText("15");
+        TotalaPagar.setBorder(null);
+        PanelVentas.add(TotalaPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 780, 140, 50));
+        PanelVentas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 220, 10));
+
+        Stock.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        PanelVentas.add(Stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 80, 40));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -211,6 +241,10 @@ public class Venta extends javax.swing.JFrame {
             }
         });
         PanelVentas.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 790, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        jLabel8.setText("Cantidad:");
+        PanelVentas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel7.setText("Total a Pagar:");
@@ -241,9 +275,9 @@ public class Venta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNombrePrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNombrePrActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -268,6 +302,73 @@ public class Venta extends javax.swing.JFrame {
        buscarCliente();
     }//GEN-LAST:event_buscarClActionPerformed
 
+    private void buscarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCodActionPerformed
+        buscarProductos();
+    }//GEN-LAST:event_buscarCodActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        agregarProducto();
+    }//GEN-LAST:event_jButton3ActionPerformed
+    void agregarProducto(){
+        int item = 0;
+        
+        modelo=(DefaultTableModel)tabla.getModel();
+         item=item+1;
+
+        String codPro=txtCodPro.getText();
+        String nomPro=txtNombrePr.getText();
+        int cant=(int) Cant.getValue();
+        int stock=(int) Stock.getValue();
+        double precio=Double.parseDouble(txtPrecio.getText());
+        double total=precio*cant;
+        
+         ArrayList lista=new ArrayList();
+        
+        if (stock>0) {
+           lista.add(item);
+           lista.add(codPro);
+           lista.add(nomPro);
+           lista.add(cant);
+           lista.add(precio);
+           lista.add(total);
+            
+           Object[] ob=new Object[6];
+           ob[0]=lista.get(0);
+           ob[1]=lista.get(1);
+           ob[2]=lista.get(2);
+           ob[3]=lista.get(3);
+           ob[4]=lista.get(4);
+           ob[5]=lista.get(5);
+           modelo.addRow(ob);
+           tabla.setModel(modelo);
+           totalaPagar();
+        }else{
+                            JOptionPane.showMessageDialog(this, "Stock no disponible");
+
+        }
+        
+        
+    }
+    void totalaPagar(){
+        int cant;
+        double precio;
+        Tpagar=0;
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            cant=Integer.parseInt( tabla.getValueAt(i, 3).toString());
+            precio=Double.parseDouble(tabla.getValueAt(i, 4).toString());
+            System.out.println(cant);
+            System.out.println(precio);
+            Tpagar=Tpagar+(cant*precio);
+        }
+        TotalaPagar.setText(""+Tpagar);
+         
+    }
+     void idAleatorio(){
+        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
+        serie.setText(Integer.toString(numero));
+        serie.setEditable(false);
+        serie.setEnabled(false);
+    }
     void buscarCliente(){
         int r;
         String cod=txtCodCli.getText();
@@ -278,11 +379,34 @@ public class Venta extends javax.swing.JFrame {
             if(Cliente.getDNI()!=null){
                 txtcliente.setText(Cliente.getNombre() +" "+Cliente.getApellido() );
                 txtCodPro.requestFocus();
+                
             }else{
                             r=JOptionPane.showConfirmDialog(this, "Cliente no registrado, Desea registrar");
                             if(r==0){
                                 Clientes Ct = new Clientes();
                                     Ct.setVisible(true);
+                                dispose();
+                            }
+            }
+        }
+    }
+    void buscarProductos(){
+        int r;
+        String cod=txtCodPro.getText();
+        if(txtCodPro.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "debe ingresar cod producto");
+        }else{
+            Producto Producto=pdao.listarID(cod);
+            if(Producto.getIdProducto()!=null){
+                txtNombrePr.setText(Producto.getNombre());
+                txtPrecio.setText(String.valueOf(Producto.getPrecio()));
+                Stock.setValue(Producto.getStock());
+                txtCodPro.requestFocus();
+            }else{
+                            r=JOptionPane.showConfirmDialog(this, "Producto no registrado, Desea registrar");
+                            if(r==0){
+                                Productos Pt = new Productos();
+                                    Pt.setVisible(true);
                                 dispose();
                             }
             }
@@ -294,6 +418,8 @@ public class Venta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner Cant;
     private javax.swing.JPanel PanelVentas;
+    private javax.swing.JSpinner Stock;
+    private javax.swing.JTextField TotalaPagar;
     private javax.swing.JButton buscarCl;
     private javax.swing.JButton buscarCod;
     private javax.swing.JButton jButton3;
@@ -308,16 +434,16 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField serie;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txtCodCli;
     private javax.swing.JTextField txtCodPro;
+    private javax.swing.JTextField txtNombrePr;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtcliente;
     // End of variables declaration//GEN-END:variables

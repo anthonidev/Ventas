@@ -49,16 +49,16 @@ public class Login extends javax.swing.JFrame {
         loginform.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
-        loginform.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 320, 10));
+        loginform.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 320, 10));
 
         txtUsuario.setBackground(new Color (0,0,0,0));
         txtUsuario.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         txtUsuario.setText("tonsof");
         txtUsuario.setBorder(null);
-        loginform.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, 320, 40));
+        loginform.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 320, 40));
 
         jSeparator2.setForeground(new java.awt.Color(166, 163, 111));
-        loginform.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 320, 10));
+        loginform.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 320, 10));
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Untitled.png"))); // NOI18N
@@ -72,7 +72,7 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        loginform.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 490, -1, -1));
+        loginform.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, -1, -1));
 
         txtClave.setBackground(new Color(0,0,0,0));
         txtClave.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
@@ -83,7 +83,7 @@ public class Login extends javax.swing.JFrame {
                 txtClaveActionPerformed(evt);
             }
         });
-        loginform.add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 320, 40));
+        loginform.add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 320, 40));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
@@ -97,28 +97,28 @@ public class Login extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        loginform.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 60, -1, -1));
+        loginform.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(166, 163, 111));
         jLabel3.setText("Contraseña:");
-        loginform.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, -1, -1));
+        loginform.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(166, 163, 111));
         jLabel4.setText("Usuario:");
-        loginform.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, -1, -1));
+        loginform.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/loginright.png"))); // NOI18N
-        loginform.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
+        loginform.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/loginleft2.png"))); // NOI18N
-        loginform.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 300, 560));
+        loginform.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 560));
 
         getContentPane().add(loginform);
-        loginform.setBounds(30, 20, 1170, 740);
+        loginform.setBounds(0, 0, 740, 560);
 
-        setBounds(0, 0, 1230, 797);
+        setBounds(0, 0, 733, 557);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

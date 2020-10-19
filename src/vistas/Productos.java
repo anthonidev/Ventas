@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Cliente;
 import modelo.Producto;
 import modelo.ProductoDAO;
 import modelo.Proveedor;
@@ -26,22 +25,22 @@ import vistas.Menu;
  */
 public class Productos extends javax.swing.JFrame {
 
-    ProductoDAO dao=new ProductoDAO();
-    ProveedorDAO Pdao=new ProveedorDAO();
-    Producto pr=new Producto();
-    
-    DefaultTableModel modelo= new DefaultTableModel();
+    ProductoDAO dao = new ProductoDAO();
+    ProveedorDAO Pdao = new ProveedorDAO();
+    Producto pr = new Producto();
+
+    DefaultTableModel modelo = new DefaultTableModel();
+
     public Productos() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        this.setBackground(new Color(0,0,0,0));
-        PanelCli.setBackground(new Color(0,0,0,0));
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setBackground(new Color(0, 0, 0, 0));
+        PanelCli.setBackground(new Color(0, 0, 0, 0));
         iniciar();
         fechaActual();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,6 +54,7 @@ public class Productos extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         txtPrecio = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
         agregar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -65,6 +65,7 @@ public class Productos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        JsStock = new javax.swing.JSpinner();
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
@@ -78,7 +79,7 @@ public class Productos extends javax.swing.JFrame {
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 170, 20));
+        PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, 20));
 
         actualizar.setBackground(new Color(0,0,0,0));
         actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
@@ -112,23 +113,28 @@ public class Productos extends javax.swing.JFrame {
                 txtidProvedorActionPerformed(evt);
             }
         });
-        PanelCli.add(txtidProvedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 170, 40));
+        PanelCli.add(txtidProvedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 170, 40));
 
         txtNombreProveedor.setBackground(new java.awt.Color(0, 102, 102));
         txtNombreProveedor.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombreProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelCli.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 310, 40));
+        PanelCli.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 310, 40));
 
         jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 540, 310, 20));
+        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 190, 20));
 
         txtPrecio.setBackground(new Color(0,0,0,0));
         txtPrecio.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtPrecio.setBorder(null);
-        PanelCli.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 310, 40));
+        PanelCli.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 190, 40));
 
         jSeparator5.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 310, 20));
+        PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 310, 20));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(166, 163, 111));
+        jLabel7.setText("Stock:");
+        PanelCli.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 100, 30));
 
         agregar.setBackground(new Color(0,0,0,0));
         agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
@@ -145,12 +151,12 @@ public class Productos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(166, 163, 111));
         jLabel2.setText("IdProvedor:");
-        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 170, 30));
+        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 170, 30));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(166, 163, 111));
         jLabel4.setText("Nombre:");
-        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 130, 30));
+        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 130, 30));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
         jButton2.setBorder(null);
@@ -160,12 +166,12 @@ public class Productos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setBorder(null);
-        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 310, 40));
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 310, 40));
 
         tabla.setBackground(new java.awt.Color(255, 255, 204));
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -175,11 +181,11 @@ public class Productos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IDPRODUCTO", "NOMBRE", "Descripcion", "IDPROVEDOR", "PRECIO"
+                "IDPRODUCTO", "NOMBRE", "Descripcion", "IDPROVEDOR", "PRECIO", "Stock"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -198,12 +204,12 @@ public class Productos extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(166, 163, 111));
         jLabel6.setText("Descripcion:");
-        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 210, 30));
+        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 210, 30));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(166, 163, 111));
         jLabel5.setText("Precio:");
-        PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 100, 30));
+        PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 100, 30));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
@@ -216,6 +222,7 @@ public class Productos extends javax.swing.JFrame {
             }
         });
         PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
+        PanelCli.add(JsStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 90, 30));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -236,8 +243,8 @@ public class Productos extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
 
-        PanelCli.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, 350, 160));
-        PanelCli.add(txtidProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 160, 40));
+        PanelCli.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 350, 210));
+        PanelCli.add(txtidProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 160, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Panelproductos.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -252,7 +259,7 @@ public class Productos extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Menu mn = new Menu();
         mn.setVisible(true);
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -266,48 +273,47 @@ public class Productos extends javax.swing.JFrame {
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         agregar();
         limpiar();
-         iniciar();
+        iniciar();
         fechaActual();
-         nuevo();
+        nuevo();
     }//GEN-LAST:event_agregarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-       actualizar();
+        actualizar();
         limpiar();
-         iniciar();
+        iniciar();
         fechaActual();
-         nuevo();
+        nuevo();
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void ElimnarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElimnarActionPerformed
         eliminar();
         limpiar();
-         iniciar();
+        iniciar();
         fechaActual();
-         nuevo();
+        nuevo();
     }//GEN-LAST:event_ElimnarActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-       int fila=tabla.getSelectedRow();
-        if(fila==-1){
-            JOptionPane.showMessageDialog(this,"Seleccione una fila");
-        }else{
-            
-         
-           String idProducto=tabla.getValueAt(fila, 0).toString();
-           String nombre=tabla.getValueAt(fila, 1).toString();
-           String descripcion=tabla.getValueAt(fila, 2).toString();
-           String idprovedor=tabla.getValueAt(fila, 3).toString();
-           String precio=tabla.getValueAt(fila, 4).toString();
-           
-           
-        
-        txtidProduto.setText(idProducto);
-        txtNombre.setText(nombre);
-        txtidProvedor.setText(idprovedor);
-        txtPrecio.setText(precio);
-        txtDescripcion.setText(descripcion);
-      buscarProveedor();
+        int fila = tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        } else {
+
+            String idProducto = tabla.getValueAt(fila, 0).toString();
+            String nombre = tabla.getValueAt(fila, 1).toString();
+            String descripcion = tabla.getValueAt(fila, 2).toString();
+            String idprovedor = tabla.getValueAt(fila, 3).toString();
+            String precio = tabla.getValueAt(fila, 4).toString();
+            int Stock = (int) tabla.getValueAt(fila, 5);
+
+            txtidProduto.setText(idProducto);
+            txtNombre.setText(nombre);
+            txtidProvedor.setText(idprovedor);
+            txtPrecio.setText(precio);
+            txtDescripcion.setText(descripcion);
+            JsStock.setValue(Stock);
+
         }
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -315,141 +321,147 @@ public class Productos extends javax.swing.JFrame {
         buscarProveedor();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    void buscarProveedor(){
+    void buscarProveedor() {
         int r;
-        String cod=txtidProvedor.getText();
-        if(txtidProvedor.getText().equals("")){
+        String cod = txtidProvedor.getText();
+        if (txtidProvedor.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "debe ingresar cod cliente");
-        }else{
-            Proveedor Proveedor=Pdao.listarID(cod);
-            if(Proveedor.getIdProveedor()!=null){
+        } else {
+            Proveedor Proveedor = Pdao.listarID(cod);
+            if (Proveedor.getIdProveedor() != null) {
                 txtNombreProveedor.setText(Proveedor.getNombre());
                 txtPrecio.requestFocus();
-            }else{
-                            r=JOptionPane.showConfirmDialog(this, "Cliente no registrado, Desea registrar");
-                            if(r==0){
-                                Proveedores Pv = new Proveedores();
-                                    Pv.setVisible(true);
-                                dispose();
-                            }
+            } else {
+                r = JOptionPane.showConfirmDialog(this, "Cliente no registrado, Desea registrar");
+                if (r == 0) {
+                    Proveedores Pv = new Proveedores();
+                    Pv.setVisible(true);
+                    dispose();
+                }
             }
         }
     }
-    
-    void iniciar(){
-       listar();
-       idAleatorio();
-       txtidProduto.setVisible(false);
-   }
-    void fechaActual(){
-        
-        String dia,mes,año;
-        Calendar c= Calendar.getInstance();
-        
+
+    void iniciar() {
+        listar();
+        idAleatorio();
+        txtidProduto.setVisible(false);
+    }
+
+    void fechaActual() {
+
+        String dia, mes, año;
+        Calendar c = Calendar.getInstance();
+
         dia = Integer.toString(c.get(Calendar.DATE));
-        mes = Integer.toString(c.get(Calendar.MONTH)+1);
+        mes = Integer.toString(c.get(Calendar.MONTH) + 1);
         año = Integer.toString(c.get(Calendar.YEAR));
-        
+
 //        txtFechaHoy.setText(año+"-"+mes+"-"+dia);
-        
     }
-    
-    void agregar(){
-        String idProducto=txtidProduto.getText();
-        String nombre=txtNombre.getText();
-        String descripcion=txtDescripcion.getText();
-        String idProvedor=txtidProvedor.getText();
-        String pre=txtPrecio.getText();
+
+    void agregar() {
+        String idProducto = txtidProduto.getText();
+        String nombre = txtNombre.getText();
+        String descripcion = txtDescripcion.getText();
+        String idProvedor = txtidProvedor.getText();
+        String pre = txtPrecio.getText();
         double precio = Double.parseDouble(pre);
-        
-        Object[] ob=new Object[5];
-        ob[0]=idProducto;
-        ob[1]=nombre;
-        ob[2]=descripcion;
-        ob[3]=idProvedor;
-        ob[4]=precio;
-        
-         dao.add(ob);
+        int Stock = (int) JsStock.getValue();
+
+        Object[] ob = new Object[6];
+        ob[0] = idProducto;
+        ob[1] = nombre;
+        ob[2] = descripcion;
+        ob[3] = idProvedor;
+        ob[4] = precio;
+        ob[5] = Stock;
+
+        dao.add(ob);
     }
-    
-    void idAleatorio(){
+
+    void idAleatorio() {
         int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
         txtidProduto.setText(Integer.toString(numero));
         txtidProduto.setEditable(false);
         txtidProduto.setEnabled(false);
     }
-    
-  
-        
-    void actualizar(){
-        int fila=tabla.getSelectedRow();
-        if(fila==-1){
-            JOptionPane.showMessageDialog(this,"Seleccione una fila");
-        }else{
-            String idProducto=txtidProduto.getText();
-        String nombre=txtNombre.getText();
-        String descripcion=txtDescripcion.getText();
-        String idProvedor=txtidProvedor.getText();
-        String pre=txtPrecio.getText();
-        double precio = Double.parseDouble(pre);
-        
-        Object[] ob=new Object[5];
-            ob[4]=idProducto;
-            ob[0]=nombre;
-            ob[1]=descripcion;
-            ob[2]=idProvedor;
-            ob[3]=precio;
 
-        
-         dao.actualizar(ob);
-         System.out.println("exito");
-        }      
-       
+    void actualizar() {
+        int fila = tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        } else {
+            String idProducto = txtidProduto.getText();
+            String nombre = txtNombre.getText();
+            String descripcion = txtDescripcion.getText();
+            String idProvedor = txtidProvedor.getText();
+            String pre = txtPrecio.getText();
+            double precio = Double.parseDouble(pre);
+            int Stock = (int) JsStock.getValue();
+
+            Object[] ob = new Object[6];
+            ob[5] = idProducto;
+            ob[0] = nombre;
+            ob[1] = descripcion;
+            ob[2] = idProvedor;
+            ob[3] = precio;
+            ob[4] = Stock;
+
+            dao.actualizar(ob);
+
+        }
+
     }
-    void eliminar(){
-         int fila=tabla.getSelectedRow();
-        if(fila==-1){
-            JOptionPane.showMessageDialog(this,"Seleccione una fila");
-        }else{
-            String idProducto=tabla.getValueAt(fila, 0).toString();
+
+    void eliminar() {
+        int fila = tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        } else {
+            String idProducto = tabla.getValueAt(fila, 0).toString();
             dao.eliminar(idProducto);
         }
     }
-    void listar(){
-        List<Producto> lista=dao.listar();
-        modelo=(DefaultTableModel)tabla.getModel();
-        Object[]ob=new Object[5];
-        for(int i=0;i< lista.size();i++){
-            ob[0]=lista.get(i).getIdProducto();
-            ob[1]=lista.get(i).getNombre(); 
-            ob[2]=lista.get(i).getDescripcion(); 
-            ob[3]=lista.get(i).getIdProveedor();
-            ob[4]=lista.get(i).getPrecio();
-            
+
+    void listar() {
+        List<Producto> lista = dao.listar();
+        modelo = (DefaultTableModel) tabla.getModel();
+        Object[] ob = new Object[6];
+        for (int i = 0; i < lista.size(); i++) {
+            ob[0] = lista.get(i).getIdProducto();
+            ob[1] = lista.get(i).getNombre();
+            ob[2] = lista.get(i).getDescripcion();
+            ob[3] = lista.get(i).getIdProveedor();
+            ob[4] = lista.get(i).getPrecio();
+            ob[5] = lista.get(i).getStock();
+
             modelo.addRow(ob);
         }
-        
+
         tabla.setModel(modelo);
     }
-    void nuevo(){
+
+    void nuevo() {
         txtNombre.setText("");
         txtDescripcion.setText("");
         txtidProvedor.setText("");
         txtNombreProveedor.setText("");
         txtPrecio.setText("");
         txtNombre.requestFocus();
-        
-        
+
     }
-    void limpiar(){
+
+    void limpiar() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
-            i=i-1;
+            i = i - 1;
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Elimnar;
+    private javax.swing.JSpinner JsStock;
     private javax.swing.JPanel PanelCli;
     private javax.swing.JButton actualizar;
     private javax.swing.JButton agregar;
@@ -461,6 +473,7 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

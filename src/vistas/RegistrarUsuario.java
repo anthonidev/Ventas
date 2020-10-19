@@ -89,6 +89,11 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         txtDni.setText("0000");
         txtDni.setBorder(null);
         txtDni.setOpaque(false);
+        txtDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDniActionPerformed(evt);
+            }
+        });
         PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 130, 40));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
@@ -184,13 +189,17 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         });
         PanelCli.add(pass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 700, 290, 30));
 
-        jButton2.setText("jButton2");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
+        jButton2.setText("X");
+        jButton2.setBorder(null);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setOpaque(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, -1));
 
         pass1.setBackground(new Color(0,0,0,0));
         pass1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -245,6 +254,10 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDniActionPerformed
 
     void iniciar(){
         id.setVisible(false);

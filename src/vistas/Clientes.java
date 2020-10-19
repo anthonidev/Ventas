@@ -35,6 +35,7 @@ public class Clientes extends javax.swing.JFrame {
    DefaultTableModel modelo= new DefaultTableModel();
     public Clientes() {
         initComponents();
+        
         Iniciar();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -120,7 +121,6 @@ public class Clientes extends javax.swing.JFrame {
 
         txtApellido.setBackground(new Color(0,0,0,0));
         txtApellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtApellido.setText("Quispe Perez");
         txtApellido.setBorder(null);
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +134,6 @@ public class Clientes extends javax.swing.JFrame {
 
         txtDni.setBackground(new Color(0,0,0,0));
         txtDni.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtDni.setText("74747474");
         txtDni.setBorder(null);
         PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 620, 310, 40));
 
@@ -143,7 +142,6 @@ public class Clientes extends javax.swing.JFrame {
 
         txtNumero.setBackground(new Color(0,0,0,0));
         txtNumero.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNumero.setText("958614662");
         txtNumero.setBorder(null);
         PanelCli.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 710, 310, 40));
 
@@ -190,7 +188,6 @@ public class Clientes extends javax.swing.JFrame {
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNombre.setText("Juan");
         txtNombre.setBorder(null);
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 310, 40));
 
@@ -272,6 +269,11 @@ public class Clientes extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairVentas.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 920, -1, 110));
 
         jButton2.setBackground(new Color(0,0,0,0));
@@ -279,6 +281,11 @@ public class Clientes extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setOpaque(false);
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairaproductos.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 920, -1, 110));
 
         txtHoraActual.setBackground(new Color(0,0,0,0));
@@ -317,7 +324,7 @@ public class Clientes extends javax.swing.JFrame {
         PanelCli.add(txtFechaHoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 230, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BackgroudCliente.png"))); // NOI18N
-        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1360, 1070);
@@ -399,8 +406,20 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaHoyActionPerformed
 
     private void txtHoraActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActualActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtHoraActualActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Productos Po = new Productos();
+        Po.setVisible(true);
+                dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Venta Vt = new Venta();
+        Vt.setVisible(true);
+                dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     void agregar(){
         String idCliente=txtidCliente.getText();
         String dni=txtDni.getText();
@@ -495,6 +514,7 @@ public class Clientes extends javax.swing.JFrame {
             i=i-1;
         }
     }
+    
     void fechas(){
       
          Calendar c= Calendar.getInstance();
