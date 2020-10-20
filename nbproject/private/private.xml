@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/ProductoDAO.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/NivelDao.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Login.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/VentasDAO.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/UsuarioDAO.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Proveedores.java</file>
@@ -11,6 +13,8 @@
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Empleados.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Venta.java</file>
             <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/Ventas.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/Cliente.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/Proveedor.java</file>
         </group>
     </open-files>
 </project-private>
