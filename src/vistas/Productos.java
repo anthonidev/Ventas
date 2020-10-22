@@ -8,6 +8,7 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -46,30 +47,24 @@ public class Productos extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelCli = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
         actualizar = new javax.swing.JButton();
         Elimnar = new javax.swing.JButton();
         txtidProvedor = new javax.swing.JTextField();
         txtNombreProveedor = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
         txtPrecio = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
         agregar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         JsStock = new javax.swing.JSpinner();
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         txtidProduto = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,32 +73,29 @@ public class Productos extends javax.swing.JFrame {
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jSeparator1.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 170, 20));
-
         actualizar.setBackground(new Color(0,0,0,0));
-        actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
+        actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizarpack.png"))); // NOI18N
         actualizar.setBorder(null);
         actualizar.setOpaque(false);
-        actualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
+        actualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarActionPerformed(evt);
             }
         });
-        PanelCli.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 180, 50));
+        PanelCli.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 760, 231, 64));
 
         Elimnar.setBackground(new Color(0,0,0,0));
-        Elimnar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
+        Elimnar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ELiminarpack.png"))); // NOI18N
         Elimnar.setBorder(null);
         Elimnar.setOpaque(false);
-        Elimnar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
+        Elimnar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Eliminarpack1.png"))); // NOI18N
         Elimnar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ElimnarActionPerformed(evt);
             }
         });
-        PanelCli.add(Elimnar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 180, 180, 50));
+        PanelCli.add(Elimnar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 760, 231, 64));
 
         txtidProvedor.setBackground(new Color(0,0,0,0));
         txtidProvedor.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -113,52 +105,36 @@ public class Productos extends javax.swing.JFrame {
                 txtidProvedorActionPerformed(evt);
             }
         });
-        PanelCli.add(txtidProvedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 170, 40));
+        txtidProvedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtidProvedorKeyReleased(evt);
+            }
+        });
+        PanelCli.add(txtidProvedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 150, 30));
 
-        txtNombreProveedor.setBackground(new java.awt.Color(0, 102, 102));
+        txtNombreProveedor.setBackground(new Color(0,0,0,0));
         txtNombreProveedor.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNombreProveedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelCli.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 310, 40));
-
-        jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 190, 20));
+        txtNombreProveedor.setBorder(null);
+        PanelCli.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 384, 310, 30));
 
         txtPrecio.setBackground(new Color(0,0,0,0));
         txtPrecio.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtPrecio.setBorder(null);
-        PanelCli.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 190, 40));
-
-        jSeparator5.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 310, 20));
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel7.setText("Stock:");
-        PanelCli.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 100, 30));
+        PanelCli.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 445, 80, 30));
 
         agregar.setBackground(new Color(0,0,0,0));
-        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Agregar.png"))); // NOI18N
         agregar.setBorder(null);
         agregar.setOpaque(false);
-        agregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
+        agregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarP.png"))); // NOI18N
         agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarActionPerformed(evt);
             }
         });
-        PanelCli.add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 180, 50));
+        PanelCli.add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 760, 231, 64));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel2.setText("IdProvedor:");
-        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 170, 30));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel4.setText("Nombre:");
-        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 130, 30));
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
+        jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setBorder(null);
         jButton2.setOpaque(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -166,16 +142,16 @@ public class Productos extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 40, 30));
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setBorder(null);
-        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 310, 40));
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 235, 260, 30));
 
-        tabla.setBackground(new java.awt.Color(255, 255, 204));
+        tabla.setBackground(new java.awt.Color(242, 152, 114));
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        tabla.setForeground(new java.awt.Color(102, 102, 102));
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -192,24 +168,21 @@ public class Productos extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tabla.setOpaque(false);
+        tabla.setRequestFocusEnabled(false);
+        tabla.setSelectionBackground(new java.awt.Color(145, 255, 242));
+        tabla.setSelectionForeground(new java.awt.Color(166, 82, 45));
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tablaMouseEntered(evt);
+            }
         });
         jScrollPane1.setViewportView(tabla);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 720, 490));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel6.setText("Descripcion:");
-        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 210, 30));
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel5.setText("Precio:");
-        PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 100, 30));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 800, 570));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
@@ -221,13 +194,14 @@ public class Productos extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
-        PanelCli.add(JsStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, 90, 30));
+        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        JsStock.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        PanelCli.add(JsStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, 90, 30));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton7.setText("x");
         jButton7.setBorder(null);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setOpaque(false);
@@ -237,22 +211,41 @@ public class Productos extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
+        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        txtDescripcion.setBackground(new Color(0,0,0,0));
         txtDescripcion.setColumns(20);
+        txtDescripcion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtDescripcion.setRows(5);
+        txtDescripcion.setCaretColor(new java.awt.Color(0, 153, 153));
+        txtDescripcion.setOpaque(false);
         jScrollPane2.setViewportView(txtDescripcion);
 
-        PanelCli.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 350, 210));
+        PanelCli.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, 360, 170));
         PanelCli.add(txtidProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 160, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Panelproductos.png"))); // NOI18N
-        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jButton1.setBackground(new Color(0,0,0,0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/goprov.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setOpaque(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/goprovf.png"))); // NOI18N
+        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 908, -1, 120));
+
+        jButton4.setBackground(new Color(0,0,0,0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iraVentas.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setOpaque(false);
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairVentas.png"))); // NOI18N
+        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 908, -1, 120));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductosPanel.png"))); // NOI18N
+        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1360, 1070));
 
         getContentPane().add(PanelCli);
-        PanelCli.setBounds(0, 0, 1370, 920);
+        PanelCli.setBounds(0, 0, 1360, 1080);
 
-        setSize(new java.awt.Dimension(1349, 904));
+        setSize(new java.awt.Dimension(1365, 1074));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,13 +306,23 @@ public class Productos extends javax.swing.JFrame {
             txtPrecio.setText(precio);
             txtDescripcion.setText(descripcion);
             JsStock.setValue(Stock);
-
+            buscarProveedor() ;
         }
     }//GEN-LAST:event_tablaMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         buscarProveedor();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtidProvedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidProvedorKeyReleased
+       if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscarProveedor() ;
+        }
+    }//GEN-LAST:event_txtidProvedorKeyReleased
+
+    private void tablaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaMouseEntered
 
     void buscarProveedor() {
         int r;
@@ -465,20 +468,14 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JPanel PanelCli;
     private javax.swing.JButton actualizar;
     private javax.swing.JButton agregar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTable tabla;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtNombre;

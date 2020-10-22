@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistas;
 
 import java.awt.Color;
@@ -15,15 +11,13 @@ import java.awt.Toolkit;
  */
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Menu
-     */
+   
     public Menu() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        this.setBackground(new Color(0,0,0,0));
-        PanelMenu.setBackground(new Color(0,0,0,0));
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setBackground(new Color(0, 0, 0, 0));
+        PanelMenu.setBackground(new Color(0, 0, 0, 0));
     }
 
     /**
@@ -63,7 +57,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 280, 260));
+        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 280, 260));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Products.png"))); // NOI18N
@@ -76,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 280, 260));
+        PanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 340, 260));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informe.png"))); // NOI18N
@@ -84,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3.setOpaque(false);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeP.png"))); // NOI18N
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeF.png"))); // NOI18N
-        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 530, 280, 260));
+        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 300, 260));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleados.png"))); // NOI18N
@@ -97,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 280, 260));
+        PanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, 340, 260));
 
         jButton5.setBackground(new Color(0,0,0,0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Proveedores.png"))); // NOI18N
@@ -110,7 +104,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 190, 330, 260));
+        PanelMenu.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 190, 350, 260));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clientessss.png"))); // NOI18N
@@ -123,12 +117,11 @@ public class Menu extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 280, 260));
+        PanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 300, 260));
 
         jButton8.setBackground(new Color(0,0,0,0));
         jButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton8.setText("X");
         jButton8.setBorder(null);
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setOpaque(false);
@@ -138,10 +131,10 @@ public class Menu extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
+        PanelMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CA.png"))); // NOI18N
-        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MainMenu.png"))); // NOI18N
+        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(PanelMenu);
         PanelMenu.setBounds(0, 0, 1360, 910);
@@ -153,40 +146,37 @@ public class Menu extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Empleados Em = new Empleados();
         Em.setVisible(true);
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Clientes Ct = new Clientes();
         Ct.setVisible(true);
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Venta Vt = new Venta();
         Vt.setVisible(true);
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         Proveedores Pv = new Proveedores();
+        Proveedores Pv = new Proveedores();
         Pv.setVisible(true);
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Productos Po = new Productos();
         Po.setVisible(true);
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,6 +8,7 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.ThreadLocalRandom;
@@ -34,7 +35,7 @@ public class Venta extends javax.swing.JFrame {
     VentasDAO vdao = new VentasDAO();
     Ventas Ventas = new Ventas();
     Producto p = new Producto();
-    DetalleVentas dv=new DetalleVentas();
+    DetalleVentas dv = new DetalleVentas();
 
     DefaultTableModel modelo = new DefaultTableModel();
     String idP;
@@ -48,7 +49,8 @@ public class Venta extends javax.swing.JFrame {
         this.setBackground(new Color(0, 0, 0, 0));
         PanelVentas.setBackground(new Color(0, 0, 0, 0));
         fechaActual();
-         idAleatorio();
+        idAleatorio();
+        Iniciar();
     }
 
     /**
@@ -61,37 +63,30 @@ public class Venta extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelVentas = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         serie = new javax.swing.JTextField();
         txtNombrePr = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
-        buscarCl = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtcliente = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         txtPrecio = new javax.swing.JTextField();
         txtCodCli = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         txtCodPro = new javax.swing.JTextField();
-        buscarCod = new javax.swing.JButton();
         Cant = new javax.swing.JSpinner();
         jButton3 = new javax.swing.JButton();
         TotalaPagar = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         Stock = new javax.swing.JSpinner();
         jButton7 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         txtfechahoy = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         idcliente = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         IDDETALLE = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,37 +95,29 @@ public class Venta extends javax.swing.JFrame {
 
         PanelVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel3.setText("N° DE SERIE");
-        PanelVentas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
-
         serie.setBackground(new java.awt.Color(0, 153, 153));
         serie.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        PanelVentas.add(serie, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, 40));
+        serie.setForeground(new java.awt.Color(0, 153, 51));
+        serie.setCaretColor(new java.awt.Color(255, 51, 0));
+        serie.setDisabledTextColor(new java.awt.Color(255, 255, 0));
+        serie.setSelectedTextColor(new java.awt.Color(153, 204, 0));
+        PanelVentas.add(serie, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 180, 40));
 
-        txtNombrePr.setBackground(new java.awt.Color(162, 162, 151));
+        txtNombrePr.setBackground(new Color(0,0,0,0));
         txtNombrePr.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        txtNombrePr.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txtNombrePr.setBorder(null);
         txtNombrePr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombrePrActionPerformed(evt);
             }
         });
-        PanelVentas.add(txtNombrePr, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 380, 30));
-        PanelVentas.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 80, 10));
+        PanelVentas.add(txtNombrePr, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 250, 30));
 
-        buscarCl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
-        buscarCl.setBorder(null);
-        buscarCl.setOpaque(false);
-        buscarCl.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
-        buscarCl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarClActionPerformed(evt);
-            }
-        });
-        PanelVentas.add(buscarCl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 0));
 
+        tabla.setBackground(new java.awt.Color(242, 152, 114));
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tabla.setForeground(new java.awt.Color(0, 0, 0));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -139,42 +126,40 @@ public class Venta extends javax.swing.JFrame {
                 "NRO", "COD", "PRODUCTO", "CANTIDAD", "PRECIO UNI", "TOTAL"
             }
         ));
+        tabla.setSelectionBackground(new java.awt.Color(145, 255, 242));
+        tabla.setSelectionForeground(new java.awt.Color(166, 82, 45));
         jScrollPane1.setViewportView(tabla);
 
-        PanelVentas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 810, 560));
+        PanelVentas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 790, 550));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel2.setText("DNI Cliente:");
-        PanelVentas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel5.setText("Stock");
-        PanelVentas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
-
-        txtcliente.setBackground(new java.awt.Color(162, 162, 151));
+        txtcliente.setBackground(new Color(0,0,0,0));
         txtcliente.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        txtcliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 380, 30));
-        PanelVentas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 220, 10));
+        txtcliente.setBorder(null);
+        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 235, 310, 30));
 
         txtPrecio.setBackground(new Color(0,0,0,0));
         txtPrecio.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtPrecio.setBorder(null);
-        PanelVentas.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 80, 40));
+        PanelVentas.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 80, 30));
 
         txtCodCli.setBackground(new Color(0,0,0,0));
         txtCodCli.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtCodCli.setText("58585858");
         txtCodCli.setBorder(null);
-        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 220, 30));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel6.setText("Precio:");
-        PanelVentas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel4.setText("COD. Producto:");
-        PanelVentas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        txtCodCli.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCodCliMouseClicked(evt);
+            }
+        });
+        txtCodCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodCliKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodCliKeyReleased(evt);
+            }
+        });
+        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 175, 150, 30));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar1.png"))); // NOI18N
         jButton4.setBorder(null);
@@ -185,27 +170,27 @@ public class Venta extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 790, -1, -1));
+        PanelVentas.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 785, -1, 40));
 
         txtCodPro.setBackground(new Color(0,0,0,0));
         txtCodPro.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtCodPro.setText("00001");
         txtCodPro.setBorder(null);
-        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 220, 30));
-
-        buscarCod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
-        buscarCod.setBorder(null);
-        buscarCod.setOpaque(false);
-        buscarCod.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
-        buscarCod.addActionListener(new java.awt.event.ActionListener() {
+        txtCodPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarCodActionPerformed(evt);
+                txtCodProActionPerformed(evt);
             }
         });
-        PanelVentas.add(buscarCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
+        txtCodPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodProKeyReleased(evt);
+            }
+        });
+        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 140, 30));
 
         Cant.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        PanelVentas.add(Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 610, 70, 40));
+        Cant.setBorder(null);
+        PanelVentas.add(Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 640, 80, 30));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
@@ -218,18 +203,19 @@ public class Venta extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 710, -1, -1));
+        PanelVentas.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 690, -1, -1));
 
-        TotalaPagar.setBackground(new java.awt.Color(153, 153, 153));
+        TotalaPagar.setBackground(new Color(0,0,0,0));
         TotalaPagar.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         TotalaPagar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TotalaPagar.setText("15");
         TotalaPagar.setBorder(null);
-        PanelVentas.add(TotalaPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 780, 140, 50));
-        PanelVentas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 220, 10));
+        TotalaPagar.setOpaque(false);
+        PanelVentas.add(TotalaPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 790, 160, 40));
 
         Stock.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        PanelVentas.add(Stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 80, 40));
+        Stock.setBorder(null);
+        PanelVentas.add(Stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 510, 80, 30));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -243,7 +229,7 @@ public class Venta extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, 50, 50));
+        PanelVentas.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 50, 50));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/VE1.png"))); // NOI18N
         jButton5.setBorder(null);
@@ -254,29 +240,24 @@ public class Venta extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 790, -1, -1));
+        PanelVentas.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 780, -1, -1));
+        PanelVentas.add(txtfechahoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 10, 50, 30));
+        PanelVentas.add(idcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 93, 50, 30));
+        PanelVentas.add(IDDETALLE, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 50, 50, 30));
 
-        txtfechahoy.setText("jTextField1");
-        PanelVentas.add(txtfechahoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 40, 100, 50));
-
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel8.setText("Cantidad:");
-        PanelVentas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, -1));
-
-        idcliente.setText("jTextField1");
-        PanelVentas.add(idcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel7.setText("Total a Pagar:");
-        PanelVentas.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 790, -1, -1));
-
-        IDDETALLE.setText("jTextField1");
-        PanelVentas.add(IDDETALLE, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 90, -1, -1));
+        jButton2.setBackground(new Color(0,0,0,0));
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        PanelVentas.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 30, 30));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton6.setText("x");
         jButton6.setBorder(null);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setOpaque(false);
@@ -286,15 +267,47 @@ public class Venta extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, 50, 50));
+        PanelVentas.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 50, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PanelVentas.png"))); // NOI18N
+        jButton8.setBackground(new Color(0,0,0,0));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gpCli.png"))); // NOI18N
+        jButton8.setBorder(null);
+        jButton8.setOpaque(false);
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gocli.png"))); // NOI18N
+        PanelVentas.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(698, 900, 390, 130));
+
+        jButton1.setBackground(new Color(0,0,0,0));
+        jButton1.setBorder(null);
+        jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        PanelVentas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 30, 30));
+
+        jButton9.setBackground(new Color(0,0,0,0));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iraProductos.png"))); // NOI18N
+        jButton9.setBorder(null);
+        jButton9.setOpaque(false);
+        jButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairaproductos.png"))); // NOI18N
+        PanelVentas.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 900, 390, 130));
+
+        jButton10.setText("jButton10");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        PanelVentas.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 60, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sistema Ventas.png"))); // NOI18N
         PanelVentas.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, -1));
 
         getContentPane().add(PanelVentas);
-        PanelVentas.setBounds(0, 0, 1370, 910);
+        PanelVentas.setBounds(0, 0, 1360, 1070);
 
-        setSize(new java.awt.Dimension(1353, 901));
+        setSize(new java.awt.Dimension(1356, 1068));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -322,17 +335,65 @@ public class Venta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void buscarClActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarClActionPerformed
-        buscarCliente();
-    }//GEN-LAST:event_buscarClActionPerformed
-
-    private void buscarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCodActionPerformed
-        buscarProductos();
-    }//GEN-LAST:event_buscarCodActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         agregarProducto();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtCodCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCliKeyPressed
+        
+    }//GEN-LAST:event_txtCodCliKeyPressed
+
+    private void txtCodCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCliKeyReleased
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscarCliente();
+        }
+    }//GEN-LAST:event_txtCodCliKeyReleased
+
+    private void txtCodProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProKeyReleased
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscarProductos();
+        }
+    }//GEN-LAST:event_txtCodProKeyReleased
+
+    private void txtCodCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodCliMouseClicked
+       
+    }//GEN-LAST:event_txtCodCliMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         buscarCliente();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        buscarProductos();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtCodProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodProActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        idVentas();
+    }//GEN-LAST:event_jButton10ActionPerformed
+    
+    
+    void idVentas(){
+        String idcli=vdao.IdVentas();
+        int id=Integer.valueOf(idcli);
+       serie.setText(Integer.toString(id+1));
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     void guardarVenta() {
         String idVentas, idCliente, FechaVenta;
         double monto;
@@ -354,41 +415,37 @@ public class Venta extends javax.swing.JFrame {
         String idDetalleventa, idVentas, idProducto;
         int cantidad;
         double precioventa;
-        
+
         idVentas = serie.getText();
         idProducto = txtCodPro.getText();
-        
-        
+
         for (int i = 0; i < tabla.getRowCount(); i++) {
-            
-             cantidad = Integer.parseInt( tabla.getValueAt(i, 3).toString());
-             precioventa = (double) tabla.getValueAt(i, 5);
-             idProducto = tabla.getValueAt(i, 1).toString();
-             
-        idDetalleventa = IDDETALLE.getText();
-             
-             System.out.println(idDetalleventa);
-             System.out.println(idVentas);
-             System.out.println(idProducto);
-             System.out.println(cantidad);
-             System.out.println(precioventa);
-             System.out.println(i);
-             
-             dv.setIdDetalleventa(idDetalleventa);
-             dv.setIdVentas(idVentas);
-             dv.setIdProducto(idProducto);
-             dv.setCantidad(cantidad);
-             dv.setPrecioventa(precioventa);
-             
-             
-             vdao.GuardarDetalleVentas(dv);
-             int numero1 = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        IDDETALLE.setText(Integer.toString(numero1));
-             
-             
+
+            cantidad = Integer.parseInt(tabla.getValueAt(i, 3).toString());
+            precioventa = (double) tabla.getValueAt(i, 5);
+            idProducto = tabla.getValueAt(i, 1).toString();
+
+            idDetalleventa = IDDETALLE.getText();
+
+            System.out.println(idDetalleventa);
+            System.out.println(idVentas);
+            System.out.println(idProducto);
+            System.out.println(cantidad);
+            System.out.println(precioventa);
+            System.out.println(i);
+
+            dv.setIdDetalleventa(idDetalleventa);
+            dv.setIdVentas(idVentas);
+            dv.setIdProducto(idProducto);
+            dv.setCantidad(cantidad);
+            dv.setPrecioventa(precioventa);
+
+            vdao.GuardarDetalleVentas(dv);
+            int numero1 = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
+            IDDETALLE.setText(Integer.toString(numero1));
+
         }
-        
-        
+
     }
 
     void fechaActual() {
@@ -437,7 +494,7 @@ public class Venta extends javax.swing.JFrame {
             modelo.addRow(ob);
             tabla.setModel(modelo);
             totalaPagar();
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Stock no disponible");
 
@@ -492,18 +549,26 @@ public class Venta extends javax.swing.JFrame {
         }
     }
 
+    void Iniciar() {
+        txtfechahoy.setVisible(false);
+        IDDETALLE.setVisible(false);
+        idcliente.setVisible(false);
+        serie.setVisible(false);
+        txtCodCli.requestFocus();
+    }
+
     void buscarProductos() {
         int r;
         String cod = txtCodPro.getText();
         if (txtCodPro.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "debe ingresar cod producto");
+            JOptionPane.showMessageDialog(this, "Debe ingresar cod producto");
         } else {
             Producto Producto = pdao.listarID(cod);
             if (Producto.getIdProducto() != null) {
                 txtNombrePr.setText(Producto.getNombre());
                 txtPrecio.setText(String.valueOf(Producto.getPrecio()));
                 Stock.setValue(Producto.getStock());
-                txtCodPro.requestFocus();
+                Cant.requestFocus();
             } else {
                 r = JOptionPane.showConfirmDialog(this, "Producto no registrado, Desea registrar");
                 if (r == 0) {
@@ -522,26 +587,19 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel PanelVentas;
     private javax.swing.JSpinner Stock;
     private javax.swing.JTextField TotalaPagar;
-    private javax.swing.JButton buscarCl;
-    private javax.swing.JButton buscarCod;
     private javax.swing.JTextField idcliente;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField serie;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtCodCli;

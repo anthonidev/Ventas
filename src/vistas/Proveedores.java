@@ -41,20 +41,16 @@ public class Proveedores extends javax.swing.JFrame {
         actualizar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         txtdireccion = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
         txtTelefono = new javax.swing.JTextField();
-        jSeparator8 = new javax.swing.JSeparator();
         agregar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         txtidProveedor = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,77 +60,58 @@ public class Proveedores extends javax.swing.JFrame {
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         actualizar.setBackground(new Color(0,0,0,0));
-        actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
+        actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizarpack.png"))); // NOI18N
         actualizar.setBorder(null);
         actualizar.setOpaque(false);
-        actualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
+        actualizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarActionPerformed(evt);
             }
         });
-        PanelCli.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 180, 180, 50));
+        PanelCli.add(actualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 770, 231, 60));
 
         eliminar.setBackground(new Color(0,0,0,0));
-        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ELiminarpack.png"))); // NOI18N
         eliminar.setBorder(null);
         eliminar.setOpaque(false);
-        eliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
+        eliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Eliminarpack1.png"))); // NOI18N
         eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarActionPerformed(evt);
             }
         });
-        PanelCli.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 180, 180, 50));
+        PanelCli.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 770, 231, 64));
 
         txtdireccion.setBackground(new Color(0,0,0,0));
         txtdireccion.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtdireccion.setText("484894984");
         txtdireccion.setBorder(null);
-        PanelCli.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 310, 40));
-
-        jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 310, 20));
+        PanelCli.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 515, 310, 30));
 
         txtTelefono.setBackground(new Color(0,0,0,0));
         txtTelefono.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtTelefono.setText("9586146625");
         txtTelefono.setBorder(null);
-        PanelCli.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 310, 40));
-
-        jSeparator8.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 310, 20));
+        PanelCli.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 700, 200, 30));
 
         agregar.setBackground(new Color(0,0,0,0));
-        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Agregar.png"))); // NOI18N
         agregar.setBorder(null);
         agregar.setOpaque(false);
-        agregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
+        agregar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AgregarP.png"))); // NOI18N
         agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregarActionPerformed(evt);
             }
         });
-        PanelCli.add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 180, 50));
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel7.setText("Teléfono:");
-        PanelCli.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 150, 30));
-
-        jSeparator7.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 310, 20));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel4.setText("Nombre:");
-        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, 30));
+        PanelCli.add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 770, 231, 64));
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setText("Juan");
         txtNombre.setBorder(null);
-        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 310, 40));
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 330, 30));
 
         tabla.setBackground(new java.awt.Color(255, 255, 204));
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -154,12 +131,7 @@ public class Proveedores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 750, 530));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel6.setText("Direción:");
-        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 130, 30));
+        PanelCli.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 790, 560));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
@@ -171,12 +143,11 @@ public class Proveedores extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, -1, -1));
+        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton7.setText("x");
         jButton7.setBorder(null);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setOpaque(false);
@@ -186,16 +157,36 @@ public class Proveedores extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 20, -1, -1));
-        PanelCli.add(txtidProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 290, 60));
+        PanelCli.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Panelproveedores.png"))); // NOI18N
+        txtidProveedor.setBackground(new Color(0,0,0,0));
+        txtidProveedor.setFont(new java.awt.Font("Dialog", 0, 25)); // NOI18N
+        txtidProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtidProveedor.setBorder(null);
+        txtidProveedor.setOpaque(false);
+        PanelCli.add(txtidProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 220, 200, 40));
+
+        jButton2.setBackground(new Color(0,0,0,0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iraProductos.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairaproductos.png"))); // NOI18N
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(708, 900, 368, 130));
+
+        jButton1.setBackground(new Color(0,0,0,0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iraProductos.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setOpaque(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairaproductos.png"))); // NOI18N
+        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 900, 368, 130));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProveedoresPanel.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(PanelCli);
-        PanelCli.setBounds(0, 0, 1370, 920);
+        PanelCli.setBounds(0, 0, 1350, 1070);
 
-        setSize(new java.awt.Dimension(1349, 904));
+        setSize(new java.awt.Dimension(1355, 1104));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -359,16 +350,12 @@ public class Proveedores extends javax.swing.JFrame {
     private javax.swing.JButton actualizar;
     private javax.swing.JButton agregar;
     private javax.swing.JButton eliminar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
