@@ -12,6 +12,23 @@ public class EmpleadoDAO {
     PreparedStatement ps;
     ResultSet rs;
    
+    public String IdEmpleado(){
+        String idv="";
+        String sql="select max(IdEmpleado) from Empleado";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                idv=rs.getString(1);
+            }
+            
+        } catch (Exception e) {
+        }
+        return idv;
+    }
+    
+    
  public Empleado listarDNI(String IdEmpleado){
         Empleado em=new Empleado();
        String sql="select * from Empleado where DNI=?" ;

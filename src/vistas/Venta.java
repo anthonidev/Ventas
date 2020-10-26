@@ -11,7 +11,6 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
@@ -40,6 +39,8 @@ public class Venta extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     String idP;
     double Tpagar;
+    int item = 0;
+    public String modo;
 
     public Venta() {
 
@@ -63,7 +64,6 @@ public class Venta extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelVentas = new javax.swing.JPanel();
-        serie = new javax.swing.JTextField();
         txtNombrePr = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -78,30 +78,23 @@ public class Venta extends javax.swing.JFrame {
         Stock = new javax.swing.JSpinner();
         jButton7 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        txtfechahoy = new javax.swing.JTextField();
-        idcliente = new javax.swing.JTextField();
-        IDDETALLE = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         PanelVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        serie.setBackground(new java.awt.Color(0, 153, 153));
-        serie.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        serie.setForeground(new java.awt.Color(0, 153, 51));
-        serie.setCaretColor(new java.awt.Color(255, 51, 0));
-        serie.setDisabledTextColor(new java.awt.Color(255, 255, 0));
-        serie.setSelectedTextColor(new java.awt.Color(153, 204, 0));
-        PanelVentas.add(serie, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 180, 40));
 
         txtNombrePr.setBackground(new Color(0,0,0,0));
         txtNombrePr.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -135,20 +128,24 @@ public class Venta extends javax.swing.JFrame {
         txtcliente.setBackground(new Color(0,0,0,0));
         txtcliente.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtcliente.setBorder(null);
-        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 235, 310, 30));
+        PanelVentas.add(txtcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 235, 300, 30));
 
         txtPrecio.setBackground(new Color(0,0,0,0));
         txtPrecio.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         txtPrecio.setBorder(null);
-        PanelVentas.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 80, 30));
+        PanelVentas.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 80, 30));
 
         txtCodCli.setBackground(new Color(0,0,0,0));
         txtCodCli.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        txtCodCli.setText("58585858");
         txtCodCli.setBorder(null);
         txtCodCli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCodCliMouseClicked(evt);
+            }
+        });
+        txtCodCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodCliActionPerformed(evt);
             }
         });
         txtCodCli.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -159,8 +156,9 @@ public class Venta extends javax.swing.JFrame {
                 txtCodCliKeyReleased(evt);
             }
         });
-        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 175, 150, 30));
+        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 150, 30));
 
+        jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar1.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setOpaque(false);
@@ -170,11 +168,10 @@ public class Venta extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 785, -1, 40));
+        PanelVentas.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 760, -1, 70));
 
         txtCodPro.setBackground(new Color(0,0,0,0));
         txtCodPro.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        txtCodPro.setText("00001");
         txtCodPro.setBorder(null);
         txtCodPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,36 +183,34 @@ public class Venta extends javax.swing.JFrame {
                 txtCodProKeyReleased(evt);
             }
         });
-        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 140, 30));
+        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 140, 30));
 
         Cant.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         Cant.setBorder(null);
-        PanelVentas.add(Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 640, 80, 30));
+        PanelVentas.add(Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 640, 80, 30));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar.png"))); // NOI18N
         jButton3.setBorder(null);
         jButton3.setOpaque(false);
-        jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarp.png"))); // NOI18N
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarF.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 690, -1, -1));
+        PanelVentas.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 710, 117, 117));
 
         TotalaPagar.setBackground(new Color(0,0,0,0));
         TotalaPagar.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         TotalaPagar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TotalaPagar.setText("15");
         TotalaPagar.setBorder(null);
         TotalaPagar.setOpaque(false);
-        PanelVentas.add(TotalaPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 790, 160, 40));
+        PanelVentas.add(TotalaPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 780, 160, 40));
 
         Stock.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         Stock.setBorder(null);
-        PanelVentas.add(Stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 510, 80, 30));
+        PanelVentas.add(Stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 510, 80, 30));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -231,6 +226,7 @@ public class Venta extends javax.swing.JFrame {
         });
         PanelVentas.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 50, 50));
 
+        jButton5.setBackground(new Color(0,0,0,0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/VE1.png"))); // NOI18N
         jButton5.setBorder(null);
         jButton5.setOpaque(false);
@@ -240,10 +236,7 @@ public class Venta extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 780, -1, -1));
-        PanelVentas.add(txtfechahoy, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 10, 50, 30));
-        PanelVentas.add(idcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 93, 50, 30));
-        PanelVentas.add(IDDETALLE, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 50, 50, 30));
+        PanelVentas.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 760, -1, -1));
 
         jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setBorder(null);
@@ -253,7 +246,7 @@ public class Venta extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 30, 30));
+        PanelVentas.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 30, 30));
 
         jButton6.setBackground(new Color(0,0,0,0));
         jButton6.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -274,7 +267,12 @@ public class Venta extends javax.swing.JFrame {
         jButton8.setBorder(null);
         jButton8.setOpaque(false);
         jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gocli.png"))); // NOI18N
-        PanelVentas.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(698, 900, 390, 130));
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        PanelVentas.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 900, 390, 130));
 
         jButton1.setBackground(new Color(0,0,0,0));
         jButton1.setBorder(null);
@@ -284,25 +282,22 @@ public class Venta extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 30, 30));
+        PanelVentas.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 30, 30));
 
         jButton9.setBackground(new Color(0,0,0,0));
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iraProductos.png"))); // NOI18N
         jButton9.setBorder(null);
         jButton9.setOpaque(false);
         jButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairaproductos.png"))); // NOI18N
-        PanelVentas.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 900, 390, 130));
-
-        jButton10.setText("jButton10");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
-        PanelVentas.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 60, -1, -1));
+        PanelVentas.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 900, 390, 130));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sistema Ventas.png"))); // NOI18N
-        PanelVentas.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, -1));
+        PanelVentas.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1350, -1));
 
         getContentPane().add(PanelVentas);
         PanelVentas.setBounds(0, 0, 1360, 1070);
@@ -316,12 +311,15 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombrePrActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        Limpiar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
         guardarVenta();
         guardarDetallle();
+        JOptionPane.showMessageDialog(this, "Venta registrada ");
+        Limpiar();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -331,6 +329,8 @@ public class Venta extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Menu mn = new Menu();
         mn.setVisible(true);
+                mn.mode=modo;
+
         dispose();
 
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -340,27 +340,27 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtCodCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCliKeyPressed
-        
+
     }//GEN-LAST:event_txtCodCliKeyPressed
 
     private void txtCodCliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCliKeyReleased
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             buscarCliente();
         }
     }//GEN-LAST:event_txtCodCliKeyReleased
 
     private void txtCodProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProKeyReleased
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             buscarProductos();
         }
     }//GEN-LAST:event_txtCodProKeyReleased
 
     private void txtCodCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodCliMouseClicked
-       
+
     }//GEN-LAST:event_txtCodCliMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         buscarCliente();
+        buscarCliente();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -371,36 +371,63 @@ public class Venta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodProActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        idVentas();
-    }//GEN-LAST:event_jButton10ActionPerformed
-    
-    
-    void idVentas(){
-        String idcli=vdao.IdVentas();
-        int id=Integer.valueOf(idcli);
-       serie.setText(Integer.toString(id+1));
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Productos pc = new Productos();
+        pc.setVisible(true);
+         pc.modo=modo;
+        dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        Clientes cl = new Clientes();
+        cl.setVisible(true);
+        cl.modo=modo;
+        dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void txtCodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodCliActionPerformed
+    public String mode;
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+        Diseño();
+
+    }//GEN-LAST:event_formWindowActivated
+
+    void Limpiar() {
+        txtCodCli.setText("");
+        txtcliente.setText("");
+        txtCodPro.setText("");
+        txtNombrePr.setText("");
+        txtPrecio.setText("");
+        TotalaPagar.setText("");
+        Cant.setValue(0);
+        Stock.setValue(0);
+        idAleatorio();
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    String serie;
+
+    void idVentas() {
+        String idcli = vdao.IdVentas();
+        int id = Integer.valueOf(idcli);
+        serie = (Integer.toString(id + 1));
+    }
+
+    String idcli;
+
     void guardarVenta() {
         String idVentas, idCliente, FechaVenta;
         double monto;
 
-        idVentas = serie.getText();
-        idCliente = idcliente.getText();
-        FechaVenta = txtfechahoy.getText();
+        idVentas = serie;
+        idCliente = idcli;
+        FechaVenta = Fecha;
         monto = Double.parseDouble(TotalaPagar.getText());
 
         Ventas.setIdVentas(idVentas);
@@ -410,13 +437,14 @@ public class Venta extends javax.swing.JFrame {
         vdao.GuradarVEntas(Ventas);
 
     }
+    String idDlle;
 
     void guardarDetallle() {
         String idDetalleventa, idVentas, idProducto;
         int cantidad;
         double precioventa;
 
-        idVentas = serie.getText();
+        idVentas = serie;
         idProducto = txtCodPro.getText();
 
         for (int i = 0; i < tabla.getRowCount(); i++) {
@@ -425,14 +453,7 @@ public class Venta extends javax.swing.JFrame {
             precioventa = (double) tabla.getValueAt(i, 5);
             idProducto = tabla.getValueAt(i, 1).toString();
 
-            idDetalleventa = IDDETALLE.getText();
-
-            System.out.println(idDetalleventa);
-            System.out.println(idVentas);
-            System.out.println(idProducto);
-            System.out.println(cantidad);
-            System.out.println(precioventa);
-            System.out.println(i);
+            idDetalleventa = idDlle;
 
             dv.setIdDetalleventa(idDetalleventa);
             dv.setIdVentas(idVentas);
@@ -441,12 +462,26 @@ public class Venta extends javax.swing.JFrame {
             dv.setPrecioventa(precioventa);
 
             vdao.GuardarDetalleVentas(dv);
-            int numero1 = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-            IDDETALLE.setText(Integer.toString(numero1));
+            String idclia = vdao.IdDetalle();
+            int ida = Integer.valueOf(idclia);
+            idDlle = (Integer.toString(ida + 1));
 
         }
 
     }
+
+    void Diseño() {
+        if ("0".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sistema Ventas.png"))); // NOI18N
+        } else if ("1".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/claroVentas.png"))); // NOI18N
+        } else if ("2".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/VentasDarkVerde.png"))); // NOI18N
+        } else {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/VentasDarkmorado.png"))); // NOI18N
+        }
+    }
+    String Fecha;
 
     void fechaActual() {
 
@@ -457,12 +492,11 @@ public class Venta extends javax.swing.JFrame {
         mes = Integer.toString(c.get(Calendar.MONTH) + 1);
         año = Integer.toString(c.get(Calendar.YEAR));
 
-        txtfechahoy.setText(año + "-" + mes + "-" + dia);
+        Fecha = (año + "-" + mes + "-" + dia);
 
     }
 
     void agregarProducto() {
-        int item = 0;
 
         modelo = (DefaultTableModel) tabla.getModel();
         item = item + 1;
@@ -509,8 +543,7 @@ public class Venta extends javax.swing.JFrame {
         for (int i = 0; i < tabla.getRowCount(); i++) {
             cant = Integer.parseInt(tabla.getValueAt(i, 3).toString());
             precio = Double.parseDouble(tabla.getValueAt(i, 4).toString());
-            System.out.println(cant);
-            System.out.println(precio);
+
             Tpagar = Tpagar + (cant * precio);
         }
         TotalaPagar.setText("" + Tpagar);
@@ -518,12 +551,15 @@ public class Venta extends javax.swing.JFrame {
     }
 
     void idAleatorio() {
-        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        serie.setText(Integer.toString(numero));
-        int numero1 = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        IDDETALLE.setText(Integer.toString(numero1));
-        serie.setEditable(false);
-        serie.setEnabled(false);
+
+        String idcli = vdao.IdVentas();
+        int id = Integer.valueOf(idcli);
+        serie = (Integer.toString(id + 1));
+
+        String idclia = vdao.IdDetalle();
+        int ida = Integer.valueOf(idclia);
+        idDlle = (Integer.toString(ida + 1));
+
     }
 
     void buscarCliente() {
@@ -535,7 +571,7 @@ public class Venta extends javax.swing.JFrame {
             Cliente Cliente = cdao.listarID(cod);
             if (Cliente.getDNI() != null) {
                 txtcliente.setText(Cliente.getNombre() + " " + Cliente.getApellido());
-                idcliente.setText(Cliente.getIdCliente());
+                idcli = (Cliente.getIdCliente());
                 txtCodPro.requestFocus();
 
             } else {
@@ -550,10 +586,6 @@ public class Venta extends javax.swing.JFrame {
     }
 
     void Iniciar() {
-        txtfechahoy.setVisible(false);
-        IDDETALLE.setVisible(false);
-        idcliente.setVisible(false);
-        serie.setVisible(false);
         txtCodCli.requestFocus();
     }
 
@@ -583,13 +615,10 @@ public class Venta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner Cant;
-    private javax.swing.JTextField IDDETALLE;
     private javax.swing.JPanel PanelVentas;
     private javax.swing.JSpinner Stock;
     private javax.swing.JTextField TotalaPagar;
-    private javax.swing.JTextField idcliente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -600,13 +629,11 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField serie;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtCodCli;
     private javax.swing.JTextField txtCodPro;
     private javax.swing.JTextField txtNombrePr;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtcliente;
-    private javax.swing.JTextField txtfechahoy;
     // End of variables declaration//GEN-END:variables
 }

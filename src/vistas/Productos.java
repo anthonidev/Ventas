@@ -11,7 +11,6 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Producto;
@@ -31,7 +30,7 @@ public class Productos extends javax.swing.JFrame {
     Producto pr = new Producto();
 
     DefaultTableModel modelo = new DefaultTableModel();
-
+    public String modo;
     public Productos() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -69,6 +68,11 @@ public class Productos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -230,6 +234,11 @@ public class Productos extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/goprovf.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 908, -1, 120));
 
         jButton4.setBackground(new Color(0,0,0,0));
@@ -237,6 +246,11 @@ public class Productos extends javax.swing.JFrame {
         jButton4.setBorder(null);
         jButton4.setOpaque(false);
         jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairVentas.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 908, -1, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductosPanel.png"))); // NOI18N
@@ -252,6 +266,7 @@ public class Productos extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Menu mn = new Menu();
         mn.setVisible(true);
+        mn.mode=modo;
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -324,6 +339,24 @@ public class Productos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaMouseEntered
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       Venta Vt = new Venta();
+        Vt.setVisible(true);
+         Vt.modo=modo;
+                dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Proveedores p = new Proveedores();
+        p.setVisible(true);
+         p.modo=modo;
+                dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Diseño();
+    }//GEN-LAST:event_formWindowActivated
+
     void buscarProveedor() {
         int r;
         String cod = txtidProvedor.getText();
@@ -344,6 +377,17 @@ public class Productos extends javax.swing.JFrame {
             }
         }
     }
+     void Diseño(){
+    if("0".equals(modo)){
+             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductosPanel.png"))); // NOI18N
+         }else if("1".equals(modo)){
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productoClaro.png"))); // NOI18N
+         }else if("2".equals(modo)){
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductoDarkV.png"))); // NOI18N
+         }else {
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductoDarkM.png"))); // NOI18N
+         }
+}
 
     void iniciar() {
         listar();
@@ -384,10 +428,10 @@ public class Productos extends javax.swing.JFrame {
     }
 
     void idAleatorio() {
-        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        txtidProduto.setText(Integer.toString(numero));
-        txtidProduto.setEditable(false);
-        txtidProduto.setEnabled(false);
+        String idcli=dao.IdProductos();
+        int id=Integer.valueOf(idcli);
+       txtidProduto.setText(Integer.toString(id+1));
+    
     }
 
     void actualizar() {

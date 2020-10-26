@@ -21,7 +21,22 @@ public class ClienteDAO implements CRUD {
     Conexion cn=new Conexion();
     PreparedStatement ps;
     ResultSet rs;
-
+public String IdCliente(){
+        String idv="";
+        String sql="select max(IdCliente) from Cliente";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                idv=rs.getString(1);
+            }
+            
+        } catch (Exception e) {
+        }
+        return idv;
+    }
+    
     public Cliente listarID(String DNI){
         Cliente c=new Cliente();
        String sql="select * from Cliente where DNI=?" ;

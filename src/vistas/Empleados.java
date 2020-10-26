@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,7 +27,7 @@ public class Empleados extends javax.swing.JFrame {
 
     EmpleadoDAO dao = new EmpleadoDAO();
     Empleado em = new Empleado();
-
+    public String modo;
     DefaultTableModel modelo = new DefaultTableModel();
 
     public Empleados() {
@@ -39,7 +38,7 @@ public class Empleados extends javax.swing.JFrame {
         this.setBackground(new Color(0, 0, 0, 0));
         PanelCli.setBackground(new Color(0, 0, 0, 0));
         iniciar();
-      
+
         txtidEmpleado.setVisible(false);
         txtfechaIng.setVisible(false);
         txtfechana.setVisible(false);
@@ -68,6 +67,7 @@ public class Empleados extends javax.swing.JFrame {
         FechaIngreso = new com.toedter.calendar.JDateChooser();
         categoria = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         fechaNacimiento = new com.toedter.calendar.JDateChooser();
@@ -78,6 +78,11 @@ public class Empleados extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,7 +120,6 @@ public class Empleados extends javax.swing.JFrame {
 
         txtApellido.setBackground(new Color(0,0,0,0));
         txtApellido.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtApellido.setText("local");
         txtApellido.setBorder(null);
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,13 +130,11 @@ public class Empleados extends javax.swing.JFrame {
 
         txtDNI.setBackground(new Color(0,0,0,0));
         txtDNI.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtDNI.setText("98765412");
         txtDNI.setBorder(null);
         PanelCli.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 210, 30));
 
         txtNumero.setBackground(new Color(0,0,0,0));
         txtNumero.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNumero.setText("585256541");
         txtNumero.setBorder(null);
         txtNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,16 +144,16 @@ public class Empleados extends javax.swing.JFrame {
         PanelCli.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 220, 30));
 
         jButton1.setBackground(new Color(0,0,0,0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registarUser.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RU0.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregarUserpress.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RU.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 920, 350, 90));
+        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 910, 368, 103));
 
         jButton7.setBackground(new Color(0,0,0,0));
         jButton7.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -186,7 +188,7 @@ public class Empleados extends javax.swing.JFrame {
         categoria.setBackground(new java.awt.Color(166, 163, 111));
         categoria.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         categoria.setForeground(new java.awt.Color(166, 163, 111));
-        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administracion", "vendedor", "Limpieza" }));
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administracion", "Vendedor", "Limpieza" }));
         categoria.setBorder(null);
         categoria.setOpaque(false);
         categoria.addActionListener(new java.awt.event.ActionListener() {
@@ -198,9 +200,20 @@ public class Empleados extends javax.swing.JFrame {
 
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtNombre.setText("LOCALl");
         txtNombre.setBorder(null);
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 162, 250, 30));
+
+        jButton2.setBackground(new Color(0,0,0,0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iraVentas.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sombrairVentas.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 910, 368, 103));
 
         tabla.setBackground(new java.awt.Color(255, 255, 204));
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -290,6 +303,7 @@ public class Empleados extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Menu mn = new Menu();
         mn.setVisible(true);
+        mn.mode=modo;
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -315,7 +329,7 @@ public class Empleados extends javax.swing.JFrame {
         actualizar();
         limpiar();
         iniciar();
-     
+
         nuevo();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -323,7 +337,7 @@ public class Empleados extends javax.swing.JFrame {
         eliminar();
         limpiar();
         iniciar();
-      
+
         nuevo();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -340,8 +354,7 @@ public class Empleados extends javax.swing.JFrame {
             String nom = tabla.getValueAt(fila, 2).toString();
             String ape = tabla.getValueAt(fila, 3).toString();
             String numero = tabla.getValueAt(fila, 4).toString();
-//        String fechana=tabla.getValueAt(fila, 5).toString();  
-//        String fechaing=tabla.getValueAt(fila, 6).toString();  
+
             String idcategoria = tabla.getValueAt(fila, 7).toString();
             String sexo = tabla.getValueAt(fila, 8).toString();
 
@@ -361,19 +374,41 @@ public class Empleados extends javax.swing.JFrame {
             txtApellido.setText(ape);
             txtNumero.setText(numero);
             categoria.setSelectedItem(idcat);
-//         txtfechana.setText(fechana);
-//         txtfechaIng.setText(fechaing);
+
             ComboSexo.setSelectedItem(sexo);
         }
     }//GEN-LAST:event_tablaMouseClicked
 
     private void txtidEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidEmpleadoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtidEmpleadoActionPerformed
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNumeroActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Venta Vt = new Venta();
+        Vt.setVisible(true);
+        Vt.modo=modo;
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Diseño();
+    }//GEN-LAST:event_formWindowActivated
+
+    void Diseño() {
+        if ("0".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PanelEmpleado.png"))); // NOI18N
+        } else if ("1".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/EmpleadoClaro.png"))); // NOI18N
+        } else if ("2".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/EmpleadoDarkV.png"))); // NOI18N
+        } else {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/EmpleadoDarkM.png"))); // NOI18N
+        }
+    }
 
     void dateString() {
         int fila = tabla.getSelectedRow();
@@ -404,8 +439,6 @@ public class Empleados extends javax.swing.JFrame {
         listar();
         idAleatorio();
     }
-
-   
 
     void agregar() {
 
@@ -454,10 +487,9 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     void idAleatorio() {
-        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        txtidEmpleado.setText(Integer.toString(numero));
-        txtidEmpleado.setEditable(false);
-        txtidEmpleado.setEnabled(false);
+        String idcli = dao.IdEmpleado();
+        int id = Integer.valueOf(idcli);
+        txtidEmpleado.setText(Integer.toString(id + 1));
     }
 
     void actualizar() {
@@ -484,15 +516,7 @@ public class Empleados extends javax.swing.JFrame {
             } else {
                 idcat = "03";
             }
-            System.out.println(idEmpleado);
-            System.out.println(dni);
-            System.out.println(nom);
-            System.out.println(ape);
-            System.out.println(numero);
-            System.out.println(fechana);
-            System.out.println(FechaIng);
-            System.out.println(sexo);
-            System.out.println(idcat);
+
             Object[] ob = new Object[9];
             ob[8] = idEmpleado;
             ob[0] = dni;
@@ -615,6 +639,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> categoria;
     private com.toedter.calendar.JDateChooser fechaNacimiento;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;

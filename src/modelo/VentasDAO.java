@@ -27,6 +27,21 @@ public class VentasDAO {
         }
         return idv;
     }
+    public String IdDetalle(){
+        String idv="";
+        String sql="select max(idDetalleventa) from DetalleVenta";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                idv=rs.getString(1);
+            }
+            
+        } catch (Exception e) {
+        }
+        return idv;
+    }
     
     public int GuradarVEntas(Ventas v){
         Ventas ventas=new Ventas();

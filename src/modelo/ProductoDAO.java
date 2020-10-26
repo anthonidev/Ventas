@@ -13,6 +13,22 @@ public class ProductoDAO {
     PreparedStatement ps;
     ResultSet rs;
 
+    
+     public String IdProductos(){
+        String idv="";
+        String sql="select max(idProducto) from Producto";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                idv=rs.getString(1);
+            }
+            
+        } catch (Exception e) {
+        }
+        return idv;
+    }
     public Producto listarID(String idProducto) {
         Producto pr = new Producto();
         String sql = "select * from Producto where idProducto=?";

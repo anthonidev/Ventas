@@ -27,7 +27,7 @@ public class Clientes extends javax.swing.JFrame {
     ClienteDAO dao=new ClienteDAO();
     Cliente cl=new Cliente();
     
-    
+    public String modo;
    
     
    DefaultTableModel modelo= new DefaultTableModel();
@@ -71,6 +71,11 @@ public class Clientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,7 +233,7 @@ public class Clientes extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 920, -1, 110));
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 910, -1, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BackgroudCliente.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
@@ -251,6 +256,7 @@ public class Clientes extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        Menu mn = new Menu();
         mn.setVisible(true);
+        mn.mode=modo;
                 dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -311,14 +317,31 @@ public class Clientes extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Productos Po = new Productos();
         Po.setVisible(true);
+        Po.modo=modo;
                 dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Venta Vt = new Venta();
         Vt.setVisible(true);
+        Vt.modo=modo;
                 dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Diseño();
+    }//GEN-LAST:event_formWindowActivated
+    void Diseño(){
+    if("0".equals(modo)){
+             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BackgroudCliente.png"))); // NOI18N
+         }else if("1".equals(modo)){
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clienteClaro.png"))); // NOI18N
+         }else if("2".equals(modo)){
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ClienteDarkV.png"))); // NOI18N
+         }else {
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ClienteDarkM.png"))); // NOI18N
+         }
+}
     void agregar(){
         String idCliente=txtidCliente.getText();
         String dni=txtDni.getText();
@@ -341,12 +364,12 @@ public class Clientes extends javax.swing.JFrame {
          System.out.println("exito");
        
     }
-    
     void idAleatorio(){
-        int numero = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        txtidCliente.setText(Integer.toString(numero));
-        txtidCliente.setEditable(false);
-        txtidCliente.setEnabled(false);
+        
+        String idcli=dao.IdCliente();
+        int id=Integer.valueOf(idcli);
+       txtidCliente.setText(Integer.toString(id+1));
+        
     }
     void actualizar(){
         int fila=tabla.getSelectedRow();
@@ -406,6 +429,7 @@ public class Clientes extends javax.swing.JFrame {
         txtNumero.setText("");
         comboSexo.setSelectedItem("Seleccionar");
         txtNombre.requestFocus();
+        
     }
     void limpiar(){
         for (int i = 0; i < modelo.getRowCount(); i++) {

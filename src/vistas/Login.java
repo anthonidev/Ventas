@@ -34,14 +34,24 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         loginform.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtUsuario.setBackground(new Color (0,0,0,0));
-        txtUsuario.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        txtUsuario.setText("tonsof");
+        txtUsuario.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        txtUsuario.setText("root");
         txtUsuario.setBorder(null);
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
         loginform.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 170, 30));
 
         jButton1.setBackground(new Color(0,0,0,0));
@@ -60,7 +70,7 @@ public class Login extends javax.swing.JFrame {
         loginform.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, -1, -1));
 
         txtClave.setBackground(new Color(0,0,0,0));
-        txtClave.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        txtClave.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         txtClave.setText("123");
         txtClave.setBorder(null);
         txtClave.addActionListener(new java.awt.event.ActionListener() {
@@ -87,13 +97,14 @@ public class Login extends javax.swing.JFrame {
         loginform.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(loginform);
-        loginform.setBounds(0, 0, 740, 560);
+        loginform.setBounds(0, 0, 730, 560);
 
-        setBounds(0, 0, 733, 557);
+        setBounds(0, 0, 733, 563);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         validar();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -104,6 +115,12 @@ public class Login extends javax.swing.JFrame {
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
 
     }//GEN-LAST:event_txtClaveActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    }//GEN-LAST:event_formWindowActivated
 
     public void validar() {
         String usuario = txtUsuario.getText();
@@ -116,6 +133,11 @@ public class Login extends javax.swing.JFrame {
             if (eu.getUsuario() != null && eu.getClave() != null) {
 //                JOptionPane.showMessageDialog(this, "Bienvenido");
                 Menu mn = new Menu();
+                mn.id = eu.getIdEmpleado();
+                mn.pass = eu.getClave();
+                mn.user = eu.getUsuario();
+                mn.nivel = eu.getIdNivel();
+                mn.mode = eu.getMode();
                 mn.setVisible(true);
                 dispose();
             } else {

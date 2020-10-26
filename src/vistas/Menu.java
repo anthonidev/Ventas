@@ -1,9 +1,10 @@
-
 package vistas;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import modelo.EntidadUsuario;
+import modelo.UsuarioDAO;
 
 /**
  *
@@ -11,7 +12,13 @@ import java.awt.Toolkit;
  */
 public class Menu extends javax.swing.JFrame {
 
+    UsuarioDAO udao = new UsuarioDAO();
+    EntidadUsuario eu = new EntidadUsuario();
+
+    Venta v = new Venta();
+    public String mode,user,pass,id,nivel;
    
+
     public Menu() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,10 +44,18 @@ public class Menu extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        modo = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         PanelMenu.setMinimumSize(new java.awt.Dimension(1600, 100));
@@ -78,7 +93,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3.setOpaque(false);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeP.png"))); // NOI18N
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeF.png"))); // NOI18N
-        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 530, 300, 260));
+        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 560, 300, 260));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleados.png"))); // NOI18N
@@ -91,7 +106,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, 340, 260));
+        PanelMenu.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 560, 340, 260));
 
         jButton5.setBackground(new Color(0,0,0,0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Proveedores.png"))); // NOI18N
@@ -117,7 +132,7 @@ public class Menu extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 300, 260));
+        PanelMenu.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, 300, 260));
 
         jButton8.setBackground(new Color(0,0,0,0));
         jButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -133,31 +148,66 @@ public class Menu extends javax.swing.JFrame {
         });
         PanelMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        modo.setBackground(new java.awt.Color(51, 255, 102));
+        modo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        modo.setForeground(new java.awt.Color(255, 255, 0));
+        modo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Dinamico", "Claro", "OscuroV", "OscuroM" }));
+        modo.setBorder(null);
+        modo.setOpaque(false);
+        PanelMenu.add(modo, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 930, 270, 40));
+
+        jButton7.setBackground(new Color(0,0,0,0));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MODOc.png"))); // NOI18N
+        jButton7.setBorder(null);
+        jButton7.setOpaque(false);
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/presMode.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        PanelMenu.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 910, 81, 81));
+
+        jButton9.setBackground(new Color(0,0,0,0));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/info.png"))); // NOI18N
+        jButton9.setBorder(null);
+        jButton9.setOpaque(false);
+        jButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/infop.png"))); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        PanelMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 910, 81, 81));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MainMenu.png"))); // NOI18N
-        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 1050));
 
         getContentPane().add(PanelMenu);
-        PanelMenu.setBounds(0, 0, 1360, 910);
+        PanelMenu.setBounds(0, 0, 1360, 1050);
 
-        setSize(new java.awt.Dimension(1354, 902));
+        setSize(new java.awt.Dimension(1363, 1055));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Empleados Em = new Empleados();
         Em.setVisible(true);
+         Em.modo = mode;
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Clientes Ct = new Clientes();
         Ct.setVisible(true);
+        Ct.modo = mode;
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Venta Vt = new Venta();
         Vt.setVisible(true);
+        Vt.modo = mode;
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -168,16 +218,71 @@ public class Menu extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Proveedores Pv = new Proveedores();
         Pv.setVisible(true);
+        Pv.modo=mode;
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Productos Po = new Productos();
         Po.setVisible(true);
+        Po.modo = mode;
         dispose();
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+        Diseño();
+
+
+}//GEN-LAST:event_formWindowActivated
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        ActualizarModo();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+    void Diseño() {
+        
+        System.out.println(mode);
+        if ("0".equals(mode)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MainMenu.png"))); // NOI18N
+        } else if ("1".equals(mode)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MenuClaro.png"))); // NOI18N
+        } else if ("2".equals(mode)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MenuDarkV.png"))); // NOI18N
+        } else if ("3".equals(mode)){
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MenuDarkM.png"))); // NOI18N
+        }
+    }
+
+    void ActualizarModo() {
+
+        String Modulo = (String) modo.getSelectedItem();
+        if (Modulo == "Dinamico") {
+            mode = "0";
+        } else if (Modulo == "Claro") {
+            mode = "1";
+        } else if (Modulo == "OscuroV") {
+            mode = "2";
+        } else if (Modulo == "OscuroM") {
+            mode = "3";
+        }
+        Object[] ob = new Object[5];
+        ob[4] = user;
+        ob[0] = pass;
+        ob[1] = nivel;
+        ob[2] = id;
+        ob[3] = mode;
+
+        udao.actualizar(ob);
+        Diseño();
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelMenu;
@@ -187,7 +292,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> modo;
     // End of variables declaration//GEN-END:variables
 }

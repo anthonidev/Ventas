@@ -11,8 +11,8 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
+import java.awt.event.KeyEvent;
 import modelo.UsuarioDAO;
-import vistas.Menu;
 
 /**
  *
@@ -43,25 +43,17 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         PanelCli = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JTextField();
         txtDni = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         ComboNivel = new javax.swing.JComboBox<>();
         txtid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         pass2 = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         pass1 = new javax.swing.JPasswordField();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator7 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
 
@@ -82,7 +74,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
-        PanelCli.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 190, 40));
+        PanelCli.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 190, 30));
 
         txtDni.setBackground(new Color(0,0,0,0));
         txtDni.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -94,89 +86,72 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 txtDniActionPerformed(evt);
             }
         });
-        PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 130, 40));
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDniKeyReleased(evt);
+            }
+        });
+        PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 180, 40));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel2.setText("DNI:");
-        PanelCli.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel4.setText("Usuario");
-        PanelCli.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel5.setText("Repetir Contraseña");
-        PanelCli.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 660, -1, -1));
-
-        txtNombre.setBackground(new java.awt.Color(162, 162, 151));
+        txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 300, 40));
+        PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 270, 40));
 
         jButton3.setBackground(new Color(0,0,0,0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcli.png"))); // NOI18N
         jButton3.setBorder(null);
         jButton3.setOpaque(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-eliminarcliP.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 845, -1, -1));
+        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, -1));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setOpaque(false);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGARp.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 845, -1, -1));
+        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
 
         jButton5.setBackground(new Color(0,0,0,0));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
         jButton5.setBorder(null);
         jButton5.setOpaque(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
-        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 845, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel3.setText("Nivel");
-        PanelCli.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(166, 163, 111));
-        jLabel6.setText("Contraseña");
-        PanelCli.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, -1, -1));
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, -1));
 
         ComboNivel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         ComboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Vendedor", "Contabilidad" }));
-        PanelCli.add(ComboNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 190, 40));
+        PanelCli.add(ComboNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 190, 40));
 
-        txtid.setBackground(new java.awt.Color(162, 162, 151));
+        txtid.setBackground(new Color(0,0,0,0));
         txtid.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtid.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        PanelCli.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 150, 40));
+        PanelCli.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 130, 40));
 
         jButton1.setBackground(new Color(0,0,0,0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/B.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BP.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, -1));
+        PanelCli.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 40, 40));
 
         pass2.setBackground(new Color(0,0,0,0));
         pass2.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -187,46 +162,53 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 pass2ActionPerformed(evt);
             }
         });
-        PanelCli.add(pass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 700, 290, 30));
+        PanelCli.add(pass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 680, 190, 30));
 
+        jButton2.setBackground(new Color(0,0,0,0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
-        jButton2.setText("X");
         jButton2.setBorder(null);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setOpaque(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, -1));
+        PanelCli.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jButton6.setBackground(new Color(0,0,0,0));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
+        jButton6.setBorder(null);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setOpaque(false);
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back1.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
 
         pass1.setBackground(new Color(0,0,0,0));
         pass1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         pass1.setBorder(null);
         pass1.setOpaque(false);
-        PanelCli.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 290, 30));
-
-        jSeparator2.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 520, 190, 10));
-
-        jSeparator3.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 620, 290, 10));
-
-        jSeparator4.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 730, 290, 10));
-
-        jSeparator7.setForeground(new java.awt.Color(166, 163, 111));
-        PanelCli.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 130, 10));
+        pass1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pass1ActionPerformed(evt);
+            }
+        });
+        PanelCli.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 180, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
-        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 930));
+        PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 860));
         PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 10, 10));
 
         getContentPane().add(PanelCli);
-        PanelCli.setBounds(0, 0, 720, 930);
+        PanelCli.setBounds(0, 0, 1010, 930);
 
-        setSize(new java.awt.Dimension(722, 929));
+        setSize(new java.awt.Dimension(951, 861));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -243,7 +225,8 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void pass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass2ActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_pass2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -258,6 +241,26 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDniActionPerformed
+
+    private void pass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pass1ActionPerformed
+
+    private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            buscarEmpleado();
+            }
+    }//GEN-LAST:event_txtDniKeyReleased
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Empleados Em = new Empleados();
+        Em.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     void iniciar(){
         id.setVisible(false);
@@ -306,12 +309,14 @@ void add(){
             String pass=pass2.getText();
             String idnivel=BuscarNivel();
             String idEmpleado=txtid.getText(); 
+            String mode="1";
             
-            Object[] ob=new Object[4];
+            Object[] ob=new Object[5];
             ob[0]=Usuario;
             ob[1]=pass;
             ob[2]=idnivel;
             ob[3]=idEmpleado;
+            ob[3]=mode;
             udao.agregar(ob);
 }
 void agregar(){
@@ -361,16 +366,8 @@ void agregar(){
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JPasswordField pass1;
     private javax.swing.JPasswordField pass2;
     private javax.swing.JTextField txtDni;

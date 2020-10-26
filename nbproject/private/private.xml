@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/VentasDAO.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/ClienteDAO.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/UsuarioDAO.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/DetalleVentas.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Venta.java</file>
-            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/modelo/Cliente.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Login.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Productos.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Empleados.java</file>
+            <file>file:/home/anthoni/NetBeansProjects/SistemasVentas/src/vistas/Menu.java</file>
         </group>
     </open-files>
 </project-private>

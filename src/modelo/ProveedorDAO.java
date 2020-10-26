@@ -14,6 +14,22 @@ public class ProveedorDAO {
     PreparedStatement ps;
     ResultSet rs;
     
+    public String IdProductos(){
+        String idv="";
+        String sql="select max(IdProveedor) from Proveedor";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                idv=rs.getString(1);
+            }
+            
+        } catch (Exception e) {
+        }
+        return idv;
+    }
+    
      public Proveedor listarID(String IdProveedor){
         Proveedor p=new Proveedor();
        String sql="select * from Proveedor where IdProveedor=?" ;
