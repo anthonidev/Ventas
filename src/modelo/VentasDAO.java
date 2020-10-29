@@ -4,6 +4,8 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VentasDAO {
     Connection con;
@@ -74,5 +76,26 @@ public class VentasDAO {
         } catch (Exception e) {
         }
         return r;
+    }
+    
+    public List listar() {
+        List<Ventas> lista =new ArrayList<>();
+        String sql="select * from Ventas";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Ventas v=new Ventas();
+                v.setIdVentas(rs.getString(1));
+                v.setIdCliente(rs.getString(2));
+                v.setFechaVenta(rs.getString(3));
+                v.setMonto(rs.getDouble(4));
+                
+                lista.add(v);
+            }
+        } catch (Exception e) {
+        }
+        return lista;
     }
 }

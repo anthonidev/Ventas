@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.ClienteDAO;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 
 

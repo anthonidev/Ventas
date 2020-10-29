@@ -63,7 +63,7 @@ public class UsuarioDAO {
         try {
             acceso=con.Conectar();
               ps=acceso.prepareStatement(sql);
-              ps.setString(4,IdEmpleado);
+              ps.setString(1,IdEmpleado);
               ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -73,6 +73,23 @@ public class UsuarioDAO {
     public int actualizar(Object[] o) {
         int r = 0;
         String sql = "update Usuario set clave=?,idNivel=?,IdEmpleado=?,mode=? where usuario=?";
+        try {
+            acceso = con.Conectar();
+            ps = acceso.prepareStatement(sql);
+            ps.setObject(1, o[0]);
+            ps.setObject(2, o[1]);
+            ps.setObject(3, o[2]);
+            ps.setObject(4, o[3]);
+            ps.setObject(5, o[4]);
+
+            r = ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return r;
+    }
+    public int actualizaru(Object[] o) {
+        int r = 0;
+        String sql = "update Usuario set usuario=?,clave=?,idNivel=?,IdEmpleado=?,mode=? where IdEmpleado=?";
         try {
             acceso = con.Conectar();
             ps = acceso.prepareStatement(sql);

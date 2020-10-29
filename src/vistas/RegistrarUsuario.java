@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vistas;
 
 import java.awt.Color;
@@ -14,20 +9,19 @@ import modelo.EmpleadoDAO;
 import java.awt.event.KeyEvent;
 import modelo.UsuarioDAO;
 
-/**
- *
- * @author anthoni
- */
 public class RegistrarUsuario extends javax.swing.JFrame {
 
-    EmpleadoDAO dao=new EmpleadoDAO();
-    UsuarioDAO udao=new UsuarioDAO();
+    String mode = "1";
+    EmpleadoDAO dao = new EmpleadoDAO();
+    UsuarioDAO udao = new UsuarioDAO();
+    public String modo;
+
     public RegistrarUsuario() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        this.setBackground(new Color(0,0,0,0));
-        PanelCli.setBackground(new Color(0,0,0,0));
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setBackground(new Color(0, 0, 0, 0));
+        PanelCli.setBackground(new Color(0, 0, 0, 0));
         iniciar();
     }
 
@@ -54,11 +48,16 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         pass1 = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         PanelCli.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -200,10 +199,10 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
         PanelCli.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 180, 30));
+        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, 120, 140));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 860));
-        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 10, 10));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1010, 930);
@@ -217,7 +216,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       buscarEmpleado();
+        buscarEmpleado();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -225,137 +224,169 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void pass2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass2ActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_pass2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
-       add();
+
+        add();
+        limpiar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        Eliminar();
+        limpiar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtDniActionPerformed
 
     private void pass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_pass1ActionPerformed
 
     private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             buscarEmpleado();
-            }
+        }
     }//GEN-LAST:event_txtDniKeyReleased
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Empleados Em = new Empleados();
         Em.setVisible(true);
+        Em.modo=modo;
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
 
-    void iniciar(){
+        Actualizar();
+        limpiar();
+    }//GEN-LAST:event_jButton5ActionPerformed
+     void Diseño() {
+        if ("0".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
+        } else if ("1".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/claroUsuario.png"))); // NOI18N
+        } else if ("2".equals(modo)) {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/DARKusuarioverde.png"))); // NOI18N
+        } else {
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarioDark.png"))); // NOI18N
+        }
+    }
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Diseño();
+    }//GEN-LAST:event_formWindowActivated
+    void limpiar() {
+        txtUsuario.setText("");
+        pass2.setText("");
+        pass1.setText("");
+        txtid.setText("");
+        txtNombre.setText("");
+        txtDni.setText("");
+        ComboNivel.setSelectedItem("Seleccionar");
+    }
+
+    void iniciar() {
         id.setVisible(false);
     }
-    
-    String BuscarNivel(){
-        String codNivel=(String) ComboNivel.getSelectedItem();
+
+    void Eliminar() {
+        String idEmpleado = txtid.getText();
+        System.out.println(idEmpleado);
+        udao.eliminarUsuario(idEmpleado);
+
+    }
+
+    void Actualizar() {
+
+        String Usuario = txtUsuario.getText();
+        String pass = pass2.getText();
+        String idnivel = BuscarNivel();
+        String idEmpleado = txtid.getText();
+        System.out.println(Usuario);
+        System.out.println(pass);
+        System.out.println(idnivel);
+        System.out.println(idEmpleado);
+        System.out.println(mode);
+        Object[] ob = new Object[5];
+        ob[0] = Usuario;
+        ob[1] = pass;
+        ob[2] = idnivel;
+        ob[4] = idEmpleado;
+        ob[3] = mode;
+
+        udao.actualizaru(ob);
+    }
+
+    String BuscarNivel() {
+        String codNivel = (String) ComboNivel.getSelectedItem();
         String idNivel = null;
-        if (codNivel.equals("Seleccionar")){
-            JOptionPane.showMessageDialog(this,"Seleccione una opción de Nivel");
-        }else if (codNivel.equals("Administrador")){
-            idNivel="01";
-        }else if(codNivel.equals("Vendedor")){
-            idNivel="02";
-            }else{
-            idNivel="03";
+        if (codNivel.equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(this, "Seleccione una opción de Nivel");
+        } else if (codNivel.equals("Administrador")) {
+            idNivel = "01";
+        } else if (codNivel.equals("Vendedor")) {
+            idNivel = "02";
+        } else {
+            idNivel = "03";
         }
-        
+
         return idNivel;
     }
-void buscarEmpleado(){
+
+    void buscarEmpleado() {
         int r;
-        String IdEmpleado=txtDni.getText();
-        if(txtDni.getText().equals("")){
+        String IdEmpleado = txtDni.getText();
+        if (txtDni.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe ingresar DNI del Usuario a registrar");
-        }else{
-            Empleado Empleado=dao.listarDNI(IdEmpleado);
-            if(Empleado.getDNI()!=null){
-                txtNombre.setText(Empleado.getNombre() +" "+Empleado.getApellido() );
+        } else {
+            Empleado Empleado = dao.listarDNI(IdEmpleado);
+            if (Empleado.getDNI() != null) {
+                txtNombre.setText(Empleado.getNombre() + " " + Empleado.getApellido());
                 txtid.setText(Empleado.getIdEmpleado());
                 id.setText(Empleado.getIdEmpleado());
                 ComboNivel.requestFocus();
-            }else{
-                            r=JOptionPane.showConfirmDialog(this, "Empleado no registrado, Desea registrar");
-                            if(r==0){
-                                Clientes Ct = new Clientes();
-                                    Ct.setVisible(true);
-                                dispose();
-                            }
+            } else {
+                r = JOptionPane.showConfirmDialog(this, "Empleado no registrado, Desea registrar");
+                if (r == 0) {
+                    Clientes Ct = new Clientes();
+                    Ct.setVisible(true);
+                    dispose();
+                }
             }
         }
+
+    }
+
+    void add() {
+       String Usuario = txtUsuario.getText();
+        String pass = pass1.getText();
+        String passc = pass2.getText();
+        String idnivel = BuscarNivel();
+        String idEmpleado = txtid.getText();
         
-    }
-void add(){
-            String Usuario=txtUsuario.getText();
-            String pass=pass2.getText();
-            String idnivel=BuscarNivel();
-            String idEmpleado=txtid.getText(); 
-            String mode="1";
+
+        
+        
+        if(passc==pass){
+            Object[] ob = new Object[5];
+        ob[0] = Usuario;
+        ob[1] = pass;
+        ob[2] = idnivel;
+        ob[3] = idEmpleado;
+        ob[4] = mode;
+        udao.agregar(ob);
             
-            Object[] ob=new Object[5];
-            ob[0]=Usuario;
-            ob[1]=pass;
-            ob[2]=idnivel;
-            ob[3]=idEmpleado;
-            ob[3]=mode;
-            udao.agregar(ob);
-}
-void agregar(){
+            JOptionPane.showMessageDialog(this,"Usuario agregado");
+        }else{
+            JOptionPane.showMessageDialog(this,"La contraseña no coincide");
+        }
+    }
+
     
-             String Usuario=txtUsuario.getText();
-            String pass=pass2.getText();
-            String idnivel=BuscarNivel();
-            String idEmpleado=txtid.getText(); 
-            
-            Object[] ob=new Object[4];
-            ob[0]=Usuario;
-            ob[1]=pass;
-            ob[2]=idnivel;
-            ob[3]=idEmpleado;
-            dao.add(ob);
-//        if (txtUsuario.equals("")){
-    //            JOptionPane.showMessageDialog(this,"Debe completar la casilla de usuario");
-//        }else if(txtid.equals("")){
-//             JOptionPane.showMessageDialog(this,"Debe buscar al empleado");
-//        }else if(ComboNivel.equals("Seleccionar")){
-//            JOptionPane.showMessageDialog(this,"Debe seleccionar una categoria");
-//        }else if(pass22.equals(pass11)){
-//            System.out.println("exito");
-//             String Usuario=txtUsuario.getText();
-//            String pass=pass2.getText();
-//            String idnivel=BuscarNivel();
-//            String idEmpleado=txtid.getText(); Object[] ob=new Object[4];
-//            ob[0]=Usuario;
-//            ob[1]=pass;
-//            ob[2]=idnivel;
-//            ob[3]=idEmpleado;
-//            dao.add(ob);
-//        }else{
-//            
-//            
-//        }
-//        
-       
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboNivel;

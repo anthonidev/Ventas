@@ -93,6 +93,11 @@ public class Menu extends javax.swing.JFrame {
         jButton3.setOpaque(false);
         jButton3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeP.png"))); // NOI18N
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeF.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 560, 300, 260));
 
         jButton4.setBackground(new Color(0,0,0,0));
@@ -245,6 +250,13 @@ public class Menu extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         Informe Po = new Informe();
+        Po.setVisible(true);
+//        Po.modo = mode;
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
     void Diseño() {
         
         System.out.println(mode);
