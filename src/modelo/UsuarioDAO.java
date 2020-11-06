@@ -89,7 +89,7 @@ public class UsuarioDAO {
     }
     public int actualizaru(Object[] o) {
         int r = 0;
-        String sql = "update Usuario set usuario=?,clave=?,idNivel=?,IdEmpleado=?,mode=? where IdEmpleado=?";
+        String sql = "update Usuario set usuario=?,clave=?,idNivel=?,idEmpleado=?,mode=? where IdEmpleado=?";
         try {
             acceso = con.Conectar();
             ps = acceso.prepareStatement(sql);

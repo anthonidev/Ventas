@@ -332,7 +332,7 @@ public class Proveedores extends javax.swing.JFrame {
             ob[2] = direccion;
 
             dao.actualizar(ob);
-            System.out.println("exito");
+            
         }
 
     }

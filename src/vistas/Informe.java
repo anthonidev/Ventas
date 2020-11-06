@@ -3,10 +3,16 @@ package vistas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import modelo.DetalleVentas;
 
 import modelo.Ventas;
 import modelo.VentasDAO;
@@ -17,6 +23,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import reportes.ListarVentas;
+import reportes.detalles;
 
 /**
  *
@@ -26,6 +33,7 @@ public class Informe extends javax.swing.JFrame {
 
     VentasDAO dao = new VentasDAO();
     Ventas cl = new Ventas();
+    DetalleVentas dv = new DetalleVentas();
     DefaultTableModel modelo = new DefaultTableModel();
 
     public Informe() {
@@ -34,7 +42,13 @@ public class Informe extends javax.swing.JFrame {
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         this.setBackground(new Color(0, 0, 0, 0));
         PanelMenu.setBackground(new Color(0, 0, 0, 0));
-        listar();
+        
+       jScrollPane2.setVisible(false);
+        tabla2.setVisible(false);
+       jScrollPane1.setVisible(false);
+        tabla.setVisible(false);
+        
+        
     }
 
     /**
@@ -47,11 +61,15 @@ public class Informe extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelMenu = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla2 = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,19 +84,31 @@ public class Informe extends javax.swing.JFrame {
         PanelMenu.setMinimumSize(new java.awt.Dimension(1600, 100));
         PanelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setBackground(new Color(0,0,0,0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generar.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setOpaque(false);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/generar1.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 940, -1, -1));
+
         jButton8.setBackground(new Color(0,0,0,0));
         jButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back.png"))); // NOI18N
         jButton8.setBorder(null);
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton8.setOpaque(false);
-        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/back1.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        PanelMenu.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         tabla.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -91,57 +121,174 @@ public class Informe extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla);
 
-        PanelMenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 1160, 530));
-        PanelMenu.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, -1));
+        PanelMenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 1150, 530));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tabla2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tabla2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idDetalleventa", "idVentas", "idProducto", "cantidad", "precioventa"
+            }
+        ));
+        jScrollPane2.setViewportView(tabla2);
+
+        PanelMenu.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 1150, 530));
+
+        jButton9.setBackground(new Color(0,0,0,0));
+        jButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-C.png"))); // NOI18N
+        jButton9.setBorder(null);
+        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton9.setOpaque(false);
+        jButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BTN-CEP.png"))); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
-        PanelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 960, -1, -1));
+        PanelMenu.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jButton3.setBackground(new Color(0,0,0,0));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tablaVEnta.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setOpaque(false);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tablaVenta1.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        PanelMenu.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
+
+        jButton2.setBackground(new Color(0,0,0,0));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/DetalleTabla.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tablaDetalle1.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        PanelMenu.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 220, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PanelInforme.png"))); // NOI18N
-        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 1050));
+        PanelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 1050));
 
         getContentPane().add(PanelMenu);
         PanelMenu.setBounds(0, 0, 1360, 1050);
 
-        setSize(new java.awt.Dimension(1363, 1055));
+        setSize(new java.awt.Dimension(1352, 1055));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+public String modo,report;
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        dispose();
+               Menu mn = new Menu();
+        mn.setVisible(true);
+        mn.mode=modo;
+                dispose();
+                
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
 
-
+        Diseño();
 }//GEN-LAST:event_formWindowActivated
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(report=="1"){
         reporte();
+        }else{
+            reporte2();
+        }       
+        
+        
+       
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jScrollPane2.setVisible(false);
+        tabla2.setVisible(false);
+        jScrollPane1.setVisible(true);
+        tabla.setVisible(true);
+        limpiar();
+        listar();
+        report="1";
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       jScrollPane1.setVisible(false);
+       tabla.setVisible(false);
+        jScrollPane2.setVisible(true);
+        tabla2.setVisible(true);
+        limpiar();
+        listarde();
+         report="2";
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+TableRowSorter trs;
+    DefaultTableModel dtm=new DefaultTableModel();    
     void reporte() {
         List lista = new ArrayList();
         for (int i = 0; i < tabla.getRowCount(); i++) {
             ListarVentas ventas = new ListarVentas(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(), tabla.getValueAt(i, 3).toString());
             lista.add(ventas);
-          
+
         }
 
         JasperReport reporte;
         try {
-            reporte = (JasperReport) JRLoader.loadObjectFromFile("/home/anthoni/NetBeansProjects/SistemasVentas/src/reportes/reportVentas.jasper");
-            JasperPrint imprimir = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            reporte = (JasperReport) JRLoader.loadObjectFromFile("/home/anthoni/NetBeansProjects/SistemasVentas/src/reportes/Reporte.jasper");
+            JasperPrint imprimir;
+            imprimir = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JasperViewer.viewReport(imprimir, false);
         } catch (Exception e) {
         }
     }
 
+     void Diseño(){
+    if("0".equals(modo)){
+             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PanelInforme.png"))); // NOI18N
+         }else if("1".equals(modo)){
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informeswhile.png"))); // NOI18N
+         }else if("2".equals(modo)){
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Informesdarkv.png"))); // NOI18N
+         }else {
+              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informedarkm.png"))); // NOI18N
+         }
+}
+    void reporte2() {
+        List listas = new ArrayList();
+        for (int i = 0; i < tabla2.getRowCount(); i++) {
+            detalles dventas = new detalles(tabla2.getValueAt(i, 0).toString(),tabla2.getValueAt(i, 1).toString(),tabla2.getValueAt(i, 2).toString(),tabla2.getValueAt(i, 3).toString(),tabla2.getValueAt(i, 4).toString());
+            listas.add(dventas);
+
+        }
+
+        JasperReport reporte;
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile("/home/anthoni/NetBeansProjects/SistemasVentas/src/reportes/Reporte_1.jasper");
+            JasperPrint imprimir;
+            imprimir = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(listas));
+            JasperViewer.viewReport(imprimir, false);
+        } catch (Exception e) {
+        }
+    }
+
+
+    void limpiar(){
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i=i-1;
+        }
+    }
     void listar() {
         List<Ventas> lista = dao.listar();
         modelo = (DefaultTableModel) tabla.getModel();
@@ -156,15 +303,34 @@ public class Informe extends javax.swing.JFrame {
 
         tabla.setModel(modelo);
     }
+     void listarde() {
+        List<DetalleVentas> listas = dao.listardetalle();
+        modelo = (DefaultTableModel) tabla2.getModel();
+        Object[] ob = new Object[5];
+        for (int i = 0; i < listas.size(); i++) {
+            ob[0] = listas.get(i).getIdDetalleventa();
+            ob[1] = listas.get(i).getIdVentas();
+            ob[2] = listas.get(i).getIdProducto();
+            ob[3] = listas.get(i).getCantidad();
+            ob[4] = listas.get(i).getPrecioventa();
+            modelo.addRow(ob);
+        }
+
+        tabla.setModel(modelo);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton8;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla;
+    private javax.swing.JTable tabla2;
     // End of variables declaration//GEN-END:variables
 }

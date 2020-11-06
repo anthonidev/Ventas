@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import modelo.EntidadUsuario;
 import modelo.UsuarioDAO;
+import vistas.instaaa;
 
 /**
  *
@@ -248,18 +249,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+       instaaa fo = new instaaa();
+        fo.setVisible(true);
+    
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
          Informe Po = new Informe();
         Po.setVisible(true);
-//        Po.modo = mode;
+   Po.modo = mode;
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
     void Diseño() {
         
-        System.out.println(mode);
+       
         if ("0".equals(mode)) {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MainMenu.png"))); // NOI18N
         } else if ("1".equals(mode)) {

@@ -368,7 +368,7 @@ public class Empleados extends javax.swing.JFrame {
                 idcat = "Limpieza";
             }
 
-            System.out.println("");
+            
             txtidEmpleado.setText(idEmpleado);
             txtDNI.setText(dni);
             txtNombre.setText(nom);
@@ -462,15 +462,7 @@ public class Empleados extends javax.swing.JFrame {
             idcat = "03";
         }
 
-        System.out.println(idEmpleado);
-        System.out.println(dni);
-        System.out.println(nom);
-        System.out.println(ape);
-        System.out.println(numero);
-        System.out.println(fechana);
-        System.out.println(FechaIng);
-        System.out.println(idCategoria);
-        System.out.println(idcat);
+        
 
         Object[] ob = new Object[9];
         ob[0] = idEmpleado;

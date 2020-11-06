@@ -40,7 +40,6 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         ComboNivel = new javax.swing.JComboBox<>();
         txtid = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -65,7 +64,6 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         txtUsuario.setBackground(new Color(0,0,0,0));
         txtUsuario.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtUsuario.setText("JUANPO");
         txtUsuario.setBorder(null);
         txtUsuario.setOpaque(false);
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +105,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, -1));
+        PanelCli.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AGREGAR.png"))); // NOI18N
@@ -119,19 +117,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
-
-        jButton5.setBackground(new Color(0,0,0,0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bnt-actualizar.png"))); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setOpaque(false);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/btn-actualizarP.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        PanelCli.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, -1));
+        PanelCli.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, -1, -1));
 
         ComboNivel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         ComboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Administrador", "Vendedor", "Contabilidad" }));
@@ -199,7 +185,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
         PanelCli.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 180, 30));
-        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, 120, 140));
+        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 530, 90, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 860));
@@ -259,12 +245,6 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         Em.modo=modo;
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
-        Actualizar();
-        limpiar();
-    }//GEN-LAST:event_jButton5ActionPerformed
      void Diseño() {
         if ("0".equals(modo)) {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
@@ -295,31 +275,12 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     void Eliminar() {
         String idEmpleado = txtid.getText();
-        System.out.println(idEmpleado);
+       
         udao.eliminarUsuario(idEmpleado);
 
     }
 
-    void Actualizar() {
-
-        String Usuario = txtUsuario.getText();
-        String pass = pass2.getText();
-        String idnivel = BuscarNivel();
-        String idEmpleado = txtid.getText();
-        System.out.println(Usuario);
-        System.out.println(pass);
-        System.out.println(idnivel);
-        System.out.println(idEmpleado);
-        System.out.println(mode);
-        Object[] ob = new Object[5];
-        ob[0] = Usuario;
-        ob[1] = pass;
-        ob[2] = idnivel;
-        ob[4] = idEmpleado;
-        ob[3] = mode;
-
-        udao.actualizaru(ob);
-    }
+    
 
     String BuscarNivel() {
         String codNivel = (String) ComboNivel.getSelectedItem();
@@ -371,7 +332,7 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
         
         
-        if(passc==pass){
+        if(passc.equals(pass)){
             Object[] ob = new Object[5];
         ob[0] = Usuario;
         ob[1] = pass;
@@ -396,7 +357,6 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField pass1;

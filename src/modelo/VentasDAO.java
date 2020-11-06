@@ -45,6 +45,7 @@ public class VentasDAO {
         return idv;
     }
     
+    
     public int GuradarVEntas(Ventas v){
         Ventas ventas=new Ventas();
         String sql="insert into Ventas(idVentas,idCliente,FechaVenta,Monto)values(?,?,?,?)";
@@ -91,6 +92,27 @@ public class VentasDAO {
                 v.setIdCliente(rs.getString(2));
                 v.setFechaVenta(rs.getString(3));
                 v.setMonto(rs.getDouble(4));
+                
+                lista.add(v);
+            }
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+    public List listardetalle() {
+        List<DetalleVentas> lista =new ArrayList<>();
+        String sql="select * from DetalleVenta";
+        try {
+            con=cn.Conectar();
+            ps=con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                DetalleVentas v=new DetalleVentas();
+                v.setIdDetalleventa(rs.getString(1));
+                v.setIdVentas(rs.getString(2));
+                v.setIdProducto(rs.getString(3));
+                v.setCantidad(rs.getInt(4));
+                v.setPrecioventa(rs.getDouble(5));
                 
                 lista.add(v);
             }

@@ -360,7 +360,6 @@ public class Clientes extends javax.swing.JFrame {
         ob[5]=sexo;
         
          dao.add(ob);
-         System.out.println("exito");
        
     }
     void idAleatorio(){
@@ -391,7 +390,6 @@ public class Clientes extends javax.swing.JFrame {
         ob[4]=sexo;
         
          dao.actualizar(ob);
-         System.out.println("exito");
         }      
        
     }
