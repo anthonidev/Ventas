@@ -47,8 +47,8 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         pass1 = new javax.swing.JPasswordField();
-        id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -84,6 +84,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
         txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDniKeyReleased(evt);
             }
@@ -185,10 +188,10 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
         PanelCli.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 180, 30));
-        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 530, 90, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/addUser.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 860));
+        PanelCli.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 530, 90, 30));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1010, 930);
@@ -259,6 +262,17 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Diseño();
     }//GEN-LAST:event_formWindowActivated
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+         if( txtDni.getText().length()==5){
+            evt.consume();
+        }
+        
+        char TipoTecla=evt.getKeyChar();
+        if(!Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
     void limpiar() {
         txtUsuario.setText("");
         pass2.setText("");
@@ -271,6 +285,8 @@ public class RegistrarUsuario extends javax.swing.JFrame {
 
     void iniciar() {
         id.setVisible(false);
+        txtNombre.setEditable(false);
+        txtid.setEditable(false);
     }
 
     void Eliminar() {

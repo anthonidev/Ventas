@@ -97,6 +97,11 @@ public class Proveedores extends javax.swing.JFrame {
         txtTelefono.setBackground(new Color(0,0,0,0));
         txtTelefono.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtTelefono.setBorder(null);
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 700, 200, 30));
 
         agregar.setBackground(new Color(0,0,0,0));
@@ -114,6 +119,11 @@ public class Proveedores extends javax.swing.JFrame {
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 330, 30));
 
         tabla.setBackground(new java.awt.Color(255, 255, 204));
@@ -167,6 +177,11 @@ public class Proveedores extends javax.swing.JFrame {
         txtidProveedor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtidProveedor.setBorder(null);
         txtidProveedor.setOpaque(false);
+        txtidProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidProveedorKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtidProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 220, 200, 40));
 
         jButton2.setBackground(new Color(0,0,0,0));
@@ -273,6 +288,35 @@ public class Proveedores extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Diseño();
     }//GEN-LAST:event_formWindowActivated
+
+    private void txtidProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidProveedorKeyTyped
+       if( txtidProveedor.getText().length()==5){
+            evt.consume();
+        }
+        
+        char TipoTecla=evt.getKeyChar();
+        if(!Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtidProveedorKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char TipoTecla=evt.getKeyChar();
+        if(Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+       if( txtTelefono.getText().length()>12){
+            evt.consume();
+        }
+        
+        char TipoTecla=evt.getKeyChar();
+        if(!Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     void Diseño() {
         if ("0".equals(modo)) {

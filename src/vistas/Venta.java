@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistas;
 
 import java.awt.Color;
@@ -11,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
@@ -22,10 +19,6 @@ import modelo.Ventas;
 import modelo.VentasDAO;
 import vistas.Menu;
 
-/**
- *
- * @author anthoni
- */
 public class Venta extends javax.swing.JFrame {
 
     Cliente Cliente = new Cliente();
@@ -156,7 +149,7 @@ public class Venta extends javax.swing.JFrame {
                 txtCodCliKeyReleased(evt);
             }
         });
-        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 150, 30));
+        PanelVentas.add(txtCodCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 175, 150, 30));
 
         jButton4.setBackground(new Color(0,0,0,0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar1.png"))); // NOI18N
@@ -183,7 +176,7 @@ public class Venta extends javax.swing.JFrame {
                 txtCodProKeyReleased(evt);
             }
         });
-        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 140, 30));
+        PanelVentas.add(txtCodPro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 325, 140, 30));
 
         Cant.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         Cant.setBorder(null);
@@ -315,10 +308,13 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        
         guardarVenta();
         guardarDetallle();
+        ActializarStock();
+      
         JOptionPane.showMessageDialog(this, "Venta registrada ");
+        
         Limpiar();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -337,6 +333,7 @@ public class Venta extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         agregarProducto();
+        IniciarStock();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtCodCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCliKeyPressed
@@ -587,6 +584,12 @@ public class Venta extends javax.swing.JFrame {
 
     void Iniciar() {
         txtCodCli.requestFocus();
+        txtcliente.setEditable(false);
+        txtNombrePr.setEditable(false);
+        txtPrecio.setEditable(false);
+        TotalaPagar.setEditable(false);
+        Stock.setEnabled(false);
+       
     }
 
     void buscarProductos() {
@@ -611,7 +614,44 @@ public class Venta extends javax.swing.JFrame {
             }
         }
     }
+    public int valor=0;
+    Vector<String> v = new Vector<String>();
+    Vector<Integer> in = new Vector<Integer>();
+    
+    void IniciarStock(){
+         String cod = txtCodPro.getText();
+         v.add(cod);
+         int cant = (int) Cant.getValue();
+         in.add(cant);
+    }
+    void ActializarStock(){
+        for (int i = 0; i <v.size(); i++) {
+            String cod = v.elementAt(i);
+            int cantidad = in.elementAt(i);
+            Producto Producto = pdao.listarID(cod);
+        
+        String nombre=Producto.getNombre();
+        String descripcion =Producto.getDescripcion();
+        String idProvedor = Producto.getIdProveedor();
+        double precio = Producto.getPrecio();
+        int Stock = Producto.getStock();
+       
+        Stock=Stock-cantidad;
+        
+        
+        Object[] ob = new Object[6];
+            ob[5] = cod;
+            ob[0] = nombre;
+            ob[1] = descripcion;
+            ob[2] = idProvedor;
+            ob[3] = precio;
+            ob[4] = Stock;
 
+            pdao.actualizar(ob);
+        }
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner Cant;

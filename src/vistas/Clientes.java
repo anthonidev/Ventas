@@ -57,7 +57,6 @@ public class Clientes extends javax.swing.JFrame {
         txtDni = new javax.swing.JTextField();
         txtNumero = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        txtidCliente = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -67,6 +66,7 @@ public class Clientes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtidCliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -111,16 +111,31 @@ public class Clientes extends javax.swing.JFrame {
                 txtApellidoActionPerformed(evt);
             }
         });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 325, 330, 30));
 
         txtDni.setBackground(new Color(0,0,0,0));
         txtDni.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtDni.setBorder(null);
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 453, 220, 30));
 
         txtNumero.setBackground(new Color(0,0,0,0));
         txtNumero.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNumero.setBorder(null);
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, 220, 30));
 
         btnAgregar.setBackground(new Color(0,0,0,0));
@@ -135,20 +150,14 @@ public class Clientes extends javax.swing.JFrame {
         });
         PanelCli.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 770, 230, 70));
 
-        txtidCliente.setBackground(new Color(0,0,0,0));
-        txtidCliente.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        txtidCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtidCliente.setBorder(null);
-        txtidCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidClienteActionPerformed(evt);
-            }
-        });
-        PanelCli.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 130, 40));
-
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 215, 330, 30));
 
         tabla.setBackground(new java.awt.Color(255, 255, 204));
@@ -236,6 +245,17 @@ public class Clientes extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BackgroudCliente.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        txtidCliente.setBackground(new Color(0,0,0,0));
+        txtidCliente.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        txtidCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtidCliente.setBorder(null);
+        txtidCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidClienteActionPerformed(evt);
+            }
+        });
+        PanelCli.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 130, 40));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1360, 1070);
@@ -330,6 +350,42 @@ public class Clientes extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Diseño();
     }//GEN-LAST:event_formWindowActivated
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+                char TipoTecla=evt.getKeyChar();
+        if(Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+                char TipoTecla=evt.getKeyChar();
+        if(Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+       if( txtDni.getText().length()>8){
+            evt.consume();
+        }
+        
+        char TipoTecla=evt.getKeyChar();
+        if(!Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
+        if( txtNumero.getText().length()>12){
+            evt.consume();
+        }
+        
+        char TipoTecla=evt.getKeyChar();
+        if(!Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNumeroKeyTyped
     void Diseño(){
     if("0".equals(modo)){
              jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BackgroudCliente.png"))); // NOI18N

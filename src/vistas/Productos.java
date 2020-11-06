@@ -61,10 +61,10 @@ public class Productos extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
-        txtidProduto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtidProduto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,6 +110,9 @@ public class Productos extends javax.swing.JFrame {
             }
         });
         txtidProvedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidProvedorKeyTyped(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtidProvedorKeyReleased(evt);
             }
@@ -151,6 +154,11 @@ public class Productos extends javax.swing.JFrame {
         txtNombre.setBackground(new Color(0,0,0,0));
         txtNombre.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         PanelCli.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 235, 260, 30));
 
         tabla.setBackground(new java.awt.Color(242, 152, 114));
@@ -227,7 +235,6 @@ public class Productos extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtDescripcion);
 
         PanelCli.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, 360, 170));
-        PanelCli.add(txtidProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 160, 40));
 
         jButton1.setBackground(new Color(0,0,0,0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/goprov.png"))); // NOI18N
@@ -255,6 +262,7 @@ public class Productos extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ProductosPanel.png"))); // NOI18N
         PanelCli.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1360, 1070));
+        PanelCli.add(txtidProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 160, 40));
 
         getContentPane().add(PanelCli);
         PanelCli.setBounds(0, 0, 1360, 1080);
@@ -357,6 +365,24 @@ public class Productos extends javax.swing.JFrame {
         Diseño();
     }//GEN-LAST:event_formWindowActivated
 
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+       char TipoTecla=evt.getKeyChar();
+        if(Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtidProvedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidProvedorKeyTyped
+         if( txtidProvedor.getText().length()==5){
+            evt.consume();
+        }
+        
+        char TipoTecla=evt.getKeyChar();
+        if(!Character.isDigit(TipoTecla)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtidProvedorKeyTyped
+
     void buscarProveedor() {
         int r;
         String cod = txtidProvedor.getText();
@@ -393,6 +419,9 @@ public class Productos extends javax.swing.JFrame {
         listar();
         idAleatorio();
         txtidProduto.setVisible(false);
+       txtNombreProveedor.setEditable(false);
+
+
     }
 
     void fechaActual() {
