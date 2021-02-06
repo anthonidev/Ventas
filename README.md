@@ -1,4 +1,7 @@
 # Sistema de Ventas en java
+![](https://raw.githubusercontent.com/anthoni-gmu/Ventas/main/src/imagenes/LoginMejorado.png)
+
+------------
 ###  Requisitos
 - java version "1.8.0_261"
 - Apache Netbeans 12
